@@ -157,6 +157,12 @@ ALTER TABLE "user"
     ADD CONSTRAINT user_customer_fk FOREIGN KEY ( customer_id )
         REFERENCES customer ( id );
 
+create sequence ADDRESS_SEQ start with 1 increment by 1 NOMAXVALUE NOCYCLE;
+create sequence CUSTOMER_SEQ start with 1 increment by 1 NOMAXVALUE NOCYCLE;
+create sequence INGREDIENT_SEQ start with 1 increment by 1 NOMAXVALUE NOCYCLE;
+create sequence ORDER_SEQ start with 1 increment by 1 NOMAXVALUE NOCYCLE;
+create sequence PIZZA_SEQ start with 1 increment by 1 NOMAXVALUE NOCYCLE;
+create sequence USER_SEQ start with 1 increment by 1 NOMAXVALUE NOCYCLE;
 
 
 -- Oracle SQL Developer Data Modeler Summary Report: 

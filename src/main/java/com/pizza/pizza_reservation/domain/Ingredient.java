@@ -1,18 +1,15 @@
-package com.pizza.domain;
+package com.pizza.pizza_reservation.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Ingredient {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(generator = "ingredientSeq")
+  @SequenceGenerator(name = "ingredientSeq", sequenceName = "INGREDIENT_SEQ", allocationSize = 1)
   private Integer id;
   private String name;
-
 
   public Integer getId() {    return id;  }
 

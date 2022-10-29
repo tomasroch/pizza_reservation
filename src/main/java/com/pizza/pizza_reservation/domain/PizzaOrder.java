@@ -1,4 +1,4 @@
-package com.pizza.domain;
+package com.pizza.pizza_reservation.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,8 +12,7 @@ public class PizzaOrder {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer orderId;
   private String pizzaId;
-  private String amount;
-
+  private Integer amount;
 
   public Integer getOrderId() {
     return orderId;
@@ -33,11 +32,11 @@ public class PizzaOrder {
   }
 
 
-  public String getAmount() {
+  public Integer getAmount() {
     return amount;
   }
 
-  public void setAmount(String amount) {
+  public void setAmount(Integer amount) {
     this.amount = amount;
   }
 

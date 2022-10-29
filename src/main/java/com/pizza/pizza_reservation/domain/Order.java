@@ -1,18 +1,21 @@
-package com.pizza.domain;
+package com.pizza.pizza_reservation.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.pizza.pizza_reservation.enums.ORDER_STATUS;
+
+import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 public class Order {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(generator = "orderSeq")
+  @SequenceGenerator(name = "orderSeq", sequenceName = "ORDER_SEQ", allocationSize = 1)
   private Integer id;
-  private String price;
-  private String status;
+  private BigDecimal price;
+
+  @Enumerated(EnumType.STRING)
+  private ORDER_STATUS status;
   private java.sql.Date created;
   private java.sql.Date updated;
   private String customerId;
@@ -28,20 +31,20 @@ public class Order {
   }
 
 
-  public String getPrice() {
+  public BigDecimal getPrice() {
     return price;
   }
 
-  public void setPrice(String price) {
+  public void setPrice(BigDecimal price) {
     this.price = price;
   }
 
 
-  public String getStatus() {
+  public ORDER_STATUS getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(ORDER_STATUS status) {
     this.status = status;
   }
 

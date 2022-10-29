@@ -1,15 +1,13 @@
-package com.pizza.domain;
+package com.pizza.pizza_reservation.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Address {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(generator = "addressSeq")
+  @SequenceGenerator(name = "addressSeq", sequenceName = "ADDRESS_SEQ", allocationSize = 1)
   private Integer id;
   private String postalCode;
   private String city;

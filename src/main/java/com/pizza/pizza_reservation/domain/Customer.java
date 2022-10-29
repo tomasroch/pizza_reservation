@@ -1,22 +1,20 @@
-package com.pizza.domain;
+package com.pizza.pizza_reservation.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Entity
 public class Customer {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(generator = "customerSeq")
+  @SequenceGenerator(name = "customerSeq", sequenceName = "CUSTOMER_SEQ", allocationSize = 1)
   private Integer id;
   private String firstName;
   private String lastName;
   private String email;
   private String phone;
-  private String userId;
+  private Integer userId;
 
 
   public Integer getId() {
@@ -64,11 +62,11 @@ public class Customer {
   }
 
 
-  public String getUserId() {
+  public Integer getUserId() {
     return userId;
   }
 
-  public void setUserId(String userId) {
+  public void setUserId(Integer userId) {
     this.userId = userId;
   }
 
