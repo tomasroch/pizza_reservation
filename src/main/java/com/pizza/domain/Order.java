@@ -10,7 +10,7 @@ public class Order {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private String id;
+  private Integer id;
   private String price;
   private String status;
   private java.sql.Date created;
@@ -19,11 +19,11 @@ public class Order {
   private java.sql.Date estimatedDelivery;
 
 
-  public String getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 

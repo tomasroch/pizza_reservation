@@ -11,7 +11,7 @@ public class Customer {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private String id;
+  private Integer id;
   private String firstName;
   private String lastName;
   private String email;
@@ -19,11 +19,11 @@ public class Customer {
   private String userId;
 
 
-  public String getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 

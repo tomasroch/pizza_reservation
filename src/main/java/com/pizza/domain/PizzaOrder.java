@@ -10,16 +10,16 @@ public class PizzaOrder {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private String orderId;
+  private Integer orderId;
   private String pizzaId;
   private String amount;
 
 
-  public String getOrderId() {
+  public Integer getOrderId() {
     return orderId;
   }
 
-  public void setOrderId(String orderId) {
+  public void setOrderId(Integer orderId) {
     this.orderId = orderId;
   }
 

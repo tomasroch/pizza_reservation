@@ -10,7 +10,7 @@ public class Pizza {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private String id;
+  private Integer id;
   private String name;
   private String price;
   private java.sql.Date created;
@@ -18,11 +18,11 @@ public class Pizza {
   private String description;
 
 
-  public String getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 

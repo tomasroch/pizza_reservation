@@ -10,15 +10,15 @@ public class PizzaIngredient {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private String pizzaId;
+  private Integer pizzaId;
   private String ingredientId;
 
 
-  public String getPizzaId() {
+  public Integer getPizzaId() {
     return pizzaId;
   }
 
-  public void setPizzaId(String pizzaId) {
+  public void setPizzaId(Integer pizzaId) {
     this.pizzaId = pizzaId;
   }
 
