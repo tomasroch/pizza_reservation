@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="pizza_ingredient" directorySegmentName="seg_0" id="7D7B23F7-485E-974D-0F71-CB750909BD03">
+<createdBy>user</createdBy>
+<createdTime>2022-10-28 08:07:38 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="13E6E21D-6210-542A-87BB-6AD41CC2E3C5" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>0965C216-9339-472D-594F-F453C5CC8D3C</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>A61E5685-B56E-E48C-BBAC-7BB43EB94D4D</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

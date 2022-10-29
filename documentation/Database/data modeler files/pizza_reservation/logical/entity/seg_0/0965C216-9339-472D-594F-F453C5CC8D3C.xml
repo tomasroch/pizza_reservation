@@ -1,0 +1,110 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="0965C216-9339-472D-594F-F453C5CC8D3C" name="pizza">
+<createdBy>user</createdBy>
+<createdTime>2022-10-28 07:41:09 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="13E6E21D-6210-542A-87BB-6AD41CC2E3C5" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="6C0BC80D-8649-A9AC-230D-0D80C726D7D9">
+<createdBy>user</createdBy>
+<createdTime>2022-10-28 07:41:43 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="13E6E21D-6210-542A-87BB-6AD41CC2E3C5" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name" id="73979BEE-038E-1788-A7CD-37A3C1D9B98E">
+<createdBy>user</createdBy>
+<createdTime>2022-10-28 07:45:41 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="13E6E21D-6210-542A-87BB-6AD41CC2E3C5" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="price" id="A0237904-3D4A-7AED-75F9-2FB21B635451">
+<createdBy>user</createdBy>
+<createdTime>2022-10-28 07:47:48 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="13E6E21D-6210-542A-87BB-6AD41CC2E3C5" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="created" id="5944A839-19C4-ECA0-4EF7-9541D11701D7">
+<createdBy>user</createdBy>
+<createdTime>2022-10-28 09:14:53 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="13E6E21D-6210-542A-87BB-6AD41CC2E3C5" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="updated" id="583A0502-E77D-8900-0FC9-9A312EC73603">
+<createdBy>user</createdBy>
+<createdTime>2022-10-28 09:15:28 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="13E6E21D-6210-542A-87BB-6AD41CC2E3C5" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="description" id="78F4B2D5-CAFE-1E90-176F-796928621A6D">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 06:51:49 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="13E6E21D-6210-542A-87BB-6AD41CC2E3C5" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="D49229D2-E53E-52CD-8E05-6DB4837CC5FA" name="pizza PK">
+<createdBy>user</createdBy>
+<createdTime>2022-10-28 07:41:56 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="13E6E21D-6210-542A-87BB-6AD41CC2E3C5" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>6C0BC80D-8649-A9AC-230D-0D80C726D7D9</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

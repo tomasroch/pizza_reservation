@@ -1,0 +1,98 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6CFB7CD1-56B5-2A59-A55D-B724F634CBFC" name="address">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 07:10:51 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="7627AC37-169C-65AB-D6F0-63CAFE8AB7C1">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 07:11:18 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="postal_code" id="9617FE71-5F04-0C4F-5E90-9C779BBFE492">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 07:12:14 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>5</dataTypeSize>
+<ownDataTypeParameters>5,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="city" id="18E9F6E2-6DC7-2A05-A1AA-BB3C053D5F63">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 07:14:30 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="street" id="B29BC2C4-55E2-4F0F-838F-D374CDF256B2">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 07:14:59 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="530E8F19-B568-A50B-6795-DFDDAB6595EE">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 07:19:51 UTC</createdTime>
+<generatorID>53F6845C-31B7-A977-395A-53039EF6B23A</generatorID>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<referedAttribute>BFB60B2A-2428-F49F-2358-6062438CF360</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="FF2693DB-F139-BCAF-0C69-0E365EFAD298" name="address PK">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 07:11:36 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>7627AC37-169C-65AB-D6F0-63CAFE8AB7C1</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

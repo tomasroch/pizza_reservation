@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="506B26AE-3A3E-C79C-5A90-66A9774B61A6" name="pizza_ingredient">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 07:41:11 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="pizza_id" id="CA3E6358-172E-DD07-8738-B5BEC1C3224F">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 07:41:11 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="574751C6-0271-FEA9-EA9F-B8B426295FA1" referredColumn="9146393D-939D-50EC-30B3-D60EDB6BCD16"/>
+</associations>
+</Column>
+<Column name="ingredient_id" id="9DFFFA12-7DFA-0A3A-8034-5C18F6479A04">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 07:41:11 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="47A2B5BC-1EF3-ABD5-511F-7858069492F5" referredColumn="238F0364-A96B-7A16-3471-91BA3EE95131"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D7DA22A3-FABE-9F6A-A0A3-0A38B91BCD32" name="pizza_ingredient_PK">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 07:41:11 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CA3E6358-172E-DD07-8738-B5BEC1C3224F"/>
+<colUsage columnID="9DFFFA12-7DFA-0A3A-8034-5C18F6479A04"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FA725161-58DD-24ED-41D9-BEF186BE653A" name="pizza_ingredient_pizza_FK">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 07:41:11 UTC</createdTime>
+<generatorID>7D7B23F7-485E-974D-0F71-CB750909BD03</generatorID>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CA3E6358-172E-DD07-8738-B5BEC1C3224F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9C8DB59F-5FE5-A5AB-2C9C-B945E4E7B947" name="pizza_ingredient_ingredient_FK">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 07:41:11 UTC</createdTime>
+<generatorID>7D7B23F7-485E-974D-0F71-CB750909BD03</generatorID>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9DFFFA12-7DFA-0A3A-8034-5C18F6479A04"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

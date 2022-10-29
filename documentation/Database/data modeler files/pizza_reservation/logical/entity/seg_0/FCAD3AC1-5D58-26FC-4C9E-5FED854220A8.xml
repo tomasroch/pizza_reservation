@@ -1,0 +1,99 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="FCAD3AC1-5D58-26FC-4C9E-5FED854220A8" name="user">
+<createdBy>user</createdBy>
+<createdTime>2022-10-28 09:18:02 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="7EDBF78D-9A47-E741-3C0A-EB9C8A669C8B">
+<createdBy>user</createdBy>
+<createdTime>2022-10-28 09:18:44 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="username" id="72A92C6D-800C-8BDA-B363-B77F54D9A78B">
+<createdBy>user</createdBy>
+<createdTime>2022-10-28 09:19:00 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="password" id="144D139D-2D50-A83A-C094-38DFAD6B6508">
+<createdBy>user</createdBy>
+<createdTime>2022-10-28 09:19:19 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="role" id="9ABC14A9-B6F8-0334-DF61-5DA419A39AE2">
+<createdBy>user</createdBy>
+<createdTime>2022-10-28 09:20:20 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="4EBFB4A2-CBE8-9BEC-C33A-CDF5A6657AB8">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 07:32:15 UTC</createdTime>
+<generatorID>07B8CA84-28A5-7D42-6EFD-0460ABC8512E</generatorID>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>BFB60B2A-2428-F49F-2358-6062438CF360</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="AF6F1148-FB66-0F23-F99B-1DCBE1DC59E6" name="user PK">
+<createdBy>user</createdBy>
+<createdTime>2022-10-28 09:18:51 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>7EDBF78D-9A47-E741-3C0A-EB9C8A669C8B</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

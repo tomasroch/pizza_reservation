@@ -1,0 +1,49 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="781D6E24-1566-2D5B-A2F3-1500F9802198" name="ingredient">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 07:41:11 UTC</createdTime>
+<generatorID>A61E5685-B56E-E48C-BBAC-7BB43EB94D4D</generatorID>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="238F0364-A96B-7A16-3471-91BA3EE95131">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 07:41:11 UTC</createdTime>
+<generatorID>656E4EA0-3EB1-7D3A-74A2-51F3D7DF9596</generatorID>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="74F9C486-5190-F80D-4B67-01A8068F9A3A">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 07:41:11 UTC</createdTime>
+<generatorID>76F59F12-2788-3CF5-5F7F-79368F061B50</generatorID>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="21AE16B8-5FE5-5359-165C-29760BC7410D" name="ingredient_PK">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 07:41:11 UTC</createdTime>
+<generatorID>16085236-04A4-06C9-9E26-F87FEDE29598</generatorID>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="238F0364-A96B-7A16-3471-91BA3EE95131"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
