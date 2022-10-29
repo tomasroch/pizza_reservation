@@ -1,0 +1,112 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6555EC2E-569A-F334-4D3B-2956F9B7A072" name="customer">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 06:52:55 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="BFB60B2A-2428-F49F-2358-6062438CF360">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 06:53:14 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="first_name" id="3D532B70-9E6A-E1A8-6544-106124B1984A">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 06:56:32 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="last_name" id="9B5A63CE-3570-E246-4920-23D5E772B849">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 06:57:22 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="email" id="259CA334-FC39-C39A-7AD5-0EEFB9F531F9">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 06:59:38 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="phone" id="04D4B88A-BF18-2A94-ACDE-E3D8387701ED">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 06:59:51 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>9</dataTypeSize>
+<ownDataTypeParameters>9,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="ED573724-4171-AF43-2525-2CEDB2BF21A7">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 07:32:41 UTC</createdTime>
+<generatorID>07B8CA84-28A5-7D42-6EFD-0460ABC8512E</generatorID>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>7EDBF78D-9A47-E741-3C0A-EB9C8A669C8B</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="CAD729C3-A4AD-15C8-A6EC-B66C4FBDFE83" name="customer PK">
+<createdBy>user</createdBy>
+<createdTime>2022-10-29 06:56:06 UTC</createdTime>
+<ownerDesignName>pizza_reservation</ownerDesignName>
+<engineerTo>
+<item key="D4F33D62-A45C-E9B6-5E77-0D466DA66DE9" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>BFB60B2A-2428-F49F-2358-6062438CF360</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
