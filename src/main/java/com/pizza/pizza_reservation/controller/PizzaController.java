@@ -23,6 +23,14 @@ public class PizzaController {
     @GetMapping (value = "/list")
     public ResponseEntity<List<Pizza>> getAllPizzas() {       return  ResponseEntity.ok(pizzaService.getAllPizzas());    }
 
+    @GetMapping (value = "/{id}")
+    public ResponseEntity<Pizza> getPizzaById(@PathVariable Integer id) {
+        Pizza pizza = pizzaService.getPizzaById(id);
+        if (pizza != null)
+            return  ResponseEntity.ok(pizza);
+        return ResponseEntity.notFound().build();
+    }
+
     @GetMapping (value = "/list/{name}")
     public ResponseEntity<List<Pizza>> getAllPizzas(@PathVariable String name) {       return  ResponseEntity.ok(pizzaService.getPizzasByName(name));}
 

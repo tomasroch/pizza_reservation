@@ -22,6 +22,8 @@ public class PizzaService {
 
     public List<Pizza> getPizzasByName(String name){ return pizzaRepository.findByName(name);}
 
+    public Pizza getPizzaById(Integer id){ return pizzaRepository.findById(id).orElse(null);}
+
     public void deletePizza(Integer id){  pizzaRepository.deleteById(id);}
 
     public void updatePizza(Pizza pizza){
