@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
@@ -15,14 +16,12 @@ public class PizzaService {
     @Autowired
     private PizzaRepository pizzaRepository;
 
-    public void createNewPizza() {
-        Pizza pizza = new Pizza();
-        pizza.setCreated(new Date());
-        pizza.setName("Test");
-        pizza.setPrice(new BigDecimal(12));
-
-        pizzaRepository.save(pizza);
+    public Pizza createNewPizza(Pizza newPizza) {
+        newPizza.setCreated(Date.from(Instant.now()));
+        return pizzaRepository.save(newPizza);
     }
 
     public List<Pizza> getAllPizzas(){ return pizzaRepository.findAll();}
+
+    public List<Pizza> getPizzasByName(String name){ return pizzaRepository.findByName(name);}
 }
