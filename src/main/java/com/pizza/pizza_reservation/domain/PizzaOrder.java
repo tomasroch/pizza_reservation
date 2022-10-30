@@ -11,7 +11,7 @@ public class PizzaOrder {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer orderId;
-  private String pizzaId;
+  private Integer pizzaId;
   private Integer amount;
 
   public Integer getOrderId() {
@@ -23,11 +23,11 @@ public class PizzaOrder {
   }
 
 
-  public String getPizzaId() {
+  public Integer getPizzaId() {
     return pizzaId;
   }
 
-  public void setPizzaId(String pizzaId) {
+  public void setPizzaId(Integer pizzaId) {
     this.pizzaId = pizzaId;
   }
 

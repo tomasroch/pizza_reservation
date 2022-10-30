@@ -18,7 +18,7 @@ public class User {
   private USER_ROLE role;
 
   @OneToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "cusomer_id", foreignKey = @ForeignKey(name = "customer_user_fk"))
+  @JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "customer_user_fk"))
   private Customer customer;
 
   public Integer getId() {

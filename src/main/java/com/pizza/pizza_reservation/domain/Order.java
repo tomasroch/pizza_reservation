@@ -18,7 +18,7 @@ public class Order {
   private ORDER_STATUS status;
   private java.sql.Date created;
   private java.sql.Date updated;
-  private String customerId;
+  private Integer customerId;
   private java.sql.Date estimatedDelivery;
 
   @ManyToOne
@@ -71,11 +71,11 @@ public class Order {
   }
 
 
-  public String getCustomerId() {
+  public Integer getCustomerId() {
     return customerId;
   }
 
-  public void setCustomerId(String customerId) {
+  public void setCustomerId(Integer customerId) {
     this.customerId = customerId;
   }
 
