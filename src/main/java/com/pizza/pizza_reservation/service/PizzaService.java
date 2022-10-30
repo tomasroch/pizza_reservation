@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class PizzaService {
@@ -22,4 +23,6 @@ public class PizzaService {
 
         pizzaRepository.save(pizza);
     }
+
+    public List<Pizza> getAllPizzas(){ return pizzaRepository.findAll();}
 }
