@@ -2,16 +2,19 @@ package com.pizza.pizza_reservation.service;
 
 import com.pizza.pizza_reservation.domain.Pizza;
 import com.pizza.pizza_reservation.repository.PizzaRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
 @Service
 public class PizzaService {
+
+    private static Logger logger = LoggerFactory.getLogger(PizzaService.class);
 
     @Autowired
     private PizzaRepository pizzaRepository;
