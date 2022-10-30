@@ -21,6 +21,10 @@ public class Order {
   private String customerId;
   private java.sql.Date estimatedDelivery;
 
+  @ManyToOne
+  @JoinColumn(name="address_id", nullable=false)
+  private Address address;
+
 
   public Integer getId() {
     return id;
@@ -84,4 +88,11 @@ public class Order {
     this.estimatedDelivery = estimatedDelivery;
   }
 
+  public Address getAddress() {
+    return address;
+  }
+
+  public void setAddress(Address address) {
+    this.address = address;
+  }
 }

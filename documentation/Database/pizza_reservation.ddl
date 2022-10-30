@@ -9,8 +9,7 @@ CREATE TABLE address (
     id            INTEGER NOT NULL,
     postal_code   CHAR(5) NOT NULL,
     city          VARCHAR2(50) NOT NULL,
-    street        VARCHAR2(50) NOT NULL,
-    customer_id   INTEGER NOT NULL
+    street        VARCHAR2(50) NOT NULL
 );
 
 ALTER TABLE address ADD CONSTRAINT address_pk PRIMARY KEY ( id );
@@ -45,7 +44,8 @@ CREATE TABLE "order" (
     created              DATE NOT NULL,
     updated              DATE,
     customer_id          INTEGER,
-    estimated_delivery   DATE
+    estimated_delivery   DATE,
+    address_id           INTEGER
 );
 
 ALTER TABLE "order" ADD CONSTRAINT order_pk PRIMARY KEY ( id );
@@ -105,6 +105,10 @@ ALTER TABLE "order"
     ADD CONSTRAINT order_customer_fk FOREIGN KEY ( customer_id )
         REFERENCES customer ( id );
 
+ALTER TABLE "order"
+    ADD CONSTRAINT order_address_fk FOREIGN KEY ( address_id )
+        REFERENCES address ( id );
+
 ALTER TABLE pizza_ingredient
     ADD CONSTRAINT pizza_ingredient_ingredient_fk FOREIGN KEY ( ingredient_id )
         REFERENCES ingredient ( id );
@@ -123,10 +127,6 @@ ALTER TABLE pizza_order
 
 ALTER TABLE "user"
     ADD CONSTRAINT user_customer_fk FOREIGN KEY ( customer_id )
-        REFERENCES customer ( id );
-
-ALTER TABLE address
-    ADD CONSTRAINT address_customer_fk FOREIGN KEY ( customer_id )
         REFERENCES customer ( id );
 
 ALTER TABLE customer

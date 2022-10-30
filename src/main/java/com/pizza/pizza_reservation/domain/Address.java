@@ -12,8 +12,6 @@ public class Address {
   private String postalCode;
   private String city;
   private String street;
-  private String customerId;
-
 
   public Integer getId() {
     return id;
@@ -48,15 +46,6 @@ public class Address {
 
   public void setStreet(String street) {
     this.street = street;
-  }
-
-
-  public String getCustomerId() {
-    return customerId;
-  }
-
-  public void setCustomerId(String customerId) {
-    this.customerId = customerId;
   }
 
 }
