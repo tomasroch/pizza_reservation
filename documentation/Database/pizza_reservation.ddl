@@ -164,6 +164,8 @@ create sequence ORDER_SEQ start with 1 increment by 1 NOMAXVALUE NOCYCLE;
 create sequence PIZZA_SEQ start with 1 increment by 1 NOMAXVALUE NOCYCLE;
 create sequence USER_SEQ start with 1 increment by 1 NOMAXVALUE NOCYCLE;
 
+ALTER TABLE PIZZA MODIFY CREATED DEFAULT SYSDATE;
+
 
 -- Oracle SQL Developer Data Modeler Summary Report: 
 -- 

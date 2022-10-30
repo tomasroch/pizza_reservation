@@ -16,12 +16,16 @@ public class PizzaService {
     @Autowired
     private PizzaRepository pizzaRepository;
 
-    public Pizza createNewPizza(Pizza newPizza) {
-        newPizza.setCreated(Date.from(Instant.now()));
-        return pizzaRepository.save(newPizza);
-    }
+    public Pizza createNewPizza(Pizza newPizza) {        return pizzaRepository.save(newPizza);    }
 
     public List<Pizza> getAllPizzas(){ return pizzaRepository.findAll();}
 
     public List<Pizza> getPizzasByName(String name){ return pizzaRepository.findByName(name);}
+
+    public void deletePizza(Integer id){  pizzaRepository.deleteById(id);}
+
+    public void updatePizza(Pizza pizza){
+        pizza.setUpdated(Date.from(Instant.now()));
+        pizzaRepository.save(pizza);
+    }
 }

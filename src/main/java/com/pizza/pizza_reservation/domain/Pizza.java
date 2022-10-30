@@ -14,6 +14,7 @@ public class Pizza {
   private Integer id;
   private String name;
   private BigDecimal price;
+  @Column(updatable = false)
   private Date created;
   private Date updated;
   private String description;
