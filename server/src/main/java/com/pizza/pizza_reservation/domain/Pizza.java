@@ -27,6 +27,9 @@ public class Pizza {
   )
   private List<Ingredient> ingredients;
 
+  @Column(nullable = false)
+  private boolean active;
+
   public Integer getId() {
     return id;
   }
@@ -75,4 +78,7 @@ public class Pizza {
     this.description = description;
   }
 
+  public boolean getActive() {    return active;  }
+
+  public void setActive(boolean active) {    this.active = active;  }
 }
