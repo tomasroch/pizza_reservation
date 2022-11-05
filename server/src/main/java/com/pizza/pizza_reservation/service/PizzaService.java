@@ -22,6 +22,7 @@ public class PizzaService {
     public Pizza createNewPizza(Pizza newPizza) {        return pizzaRepository.save(newPizza);    }
 
     public List<Pizza> getAllPizzas(){ return pizzaRepository.findAll();}
+    public List<Pizza> getAllActivePizzas(boolean active){ return pizzaRepository.getAllActivePizzas(active);}
 
     public List<Pizza> getPizzasByName(String name){ return pizzaRepository.findByName(name);}
 
@@ -33,4 +34,6 @@ public class PizzaService {
         pizza.setUpdated(Date.from(Instant.now()));
         pizzaRepository.save(pizza);
     }
+
+    public void updateActiveStatus(Integer idPizza, boolean active){        pizzaRepository.updateActiveStatus(active, idPizza);    }
 }

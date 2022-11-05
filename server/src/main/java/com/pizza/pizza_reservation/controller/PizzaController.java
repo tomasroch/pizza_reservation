@@ -23,6 +23,9 @@ public class PizzaController {
     @GetMapping (value = "/list")
     public ResponseEntity<List<Pizza>> getAllPizzas() {       return  ResponseEntity.ok(pizzaService.getAllPizzas());    }
 
+    @GetMapping (value = "/list/active/{active}")
+    public ResponseEntity<List<Pizza>> getAllActivePizzas(@PathVariable boolean active) {       return  ResponseEntity.ok(pizzaService.getAllActivePizzas(active));    }
+
     @GetMapping (value = "/{id}")
     public ResponseEntity<Pizza> getPizzaById(@PathVariable Integer id) {
         Pizza pizza = pizzaService.getPizzaById(id);
@@ -48,6 +51,16 @@ public class PizzaController {
     public ResponseEntity<String> updatePizza(@RequestBody Pizza pizza){
         try {
             pizzaService.updatePizza(pizza);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping(value = "/{id}/active/{active}")
+    public ResponseEntity<String> updateActiveStatus(@PathVariable Integer id, @PathVariable boolean active){
+        try {
+            pizzaService.updateActiveStatus(id, active);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
