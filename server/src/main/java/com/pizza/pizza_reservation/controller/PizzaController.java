@@ -1,6 +1,7 @@
 package com.pizza.pizza_reservation.controller;
 
 import com.pizza.pizza_reservation.domain.Pizza;
+import com.pizza.pizza_reservation.domain.PizzaIngredient;
 import com.pizza.pizza_reservation.service.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -66,5 +67,19 @@ public class PizzaController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @PostMapping(value = "/ingredient")
+    public @ResponseBody PizzaIngredient addPizzaIngredient(@RequestBody PizzaIngredient pizzaIngredient) {        return pizzaService.addPizzaIngredient(pizzaIngredient);    }
+
+    @DeleteMapping(value = "/ingredient")
+    public ResponseEntity<String> deletePizzaIngredient(@RequestBody PizzaIngredient pizzaIngredient) {
+        try {
+            pizzaService.deletePizzaIngredient(pizzaIngredient);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 
 }
