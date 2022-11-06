@@ -12,6 +12,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/api/ingredient")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class IngredientController {
 
     @Autowired

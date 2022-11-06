@@ -13,6 +13,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/api/pizza")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PizzaController {
 
     @Autowired
