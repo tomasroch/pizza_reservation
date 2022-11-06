@@ -64,7 +64,7 @@ public class OrderService {
         order = orderRepository.save(order);
         Integer orderId = order.getId();
         BigDecimal price = BigDecimal.ZERO;
-        for(Map.Entry<Integer, Integer> entry : newOrder.getPizzaAmmount().entrySet()){
+        for(Map.Entry<Integer, Integer> entry : newOrder.getPizzaAmount().entrySet()){
             Pizza pizza = pizzaRepository.getReferenceById(entry.getKey());
             BigDecimal itemQantity = BigDecimal.valueOf(entry.getValue());
             price = price.add(pizza.getPrice().multiply(itemQantity));
