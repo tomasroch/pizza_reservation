@@ -1,24 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import Navbar from './components/layout/Navbar';
+import { Routes, Route } from 'react-router'
+import { ThemeProvider } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
+import { red, grey } from '@mui/material/colors'
+import Home from './pages/Home';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import Menu from './pages/Menu';
+import AboutUs from './pages/AboutUs';
+import Contact from './pages/Contact';
+import Footer from './components/layout/Footer';
+import Cart from './pages/Cart';
+import { CartContext, CartContextProvider } from './CartContext';
+
+const appTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#9c1626',
+      secondary: red[300]
+    },
+    neutral: {
+      main: grey[900]
+    },
+    gray: {
+      main: grey[200]
+    }
+  }
+})
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={appTheme}>
+      <CartContextProvider>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
+          <Route path="menu" element={<Menu />} />
+          <Route path="about-us" element={<AboutUs />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="cart" element={<Cart />} />
+        </Routes>
+        <Footer />
+      </CartContextProvider>
+    </ThemeProvider>
   );
 }
 
