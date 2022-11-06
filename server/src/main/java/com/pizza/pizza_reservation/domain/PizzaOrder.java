@@ -1,11 +1,11 @@
 package com.pizza.pizza_reservation.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.pizza.pizza_reservation.domain.idclass.PizzaOrderId;
+
+import javax.persistence.*;
 
 @Entity
+@IdClass(PizzaOrderId.class)
 public class PizzaOrder {
 
   @Id

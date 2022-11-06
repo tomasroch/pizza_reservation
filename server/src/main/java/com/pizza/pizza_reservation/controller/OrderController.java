@@ -1,6 +1,7 @@
 package com.pizza.pizza_reservation.controller;
 
 import com.pizza.pizza_reservation.domain.Order;
+import com.pizza.pizza_reservation.dto.OrderDto;
 import com.pizza.pizza_reservation.enums.ORDER_STATUS;
 import com.pizza.pizza_reservation.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping(value = "/create")
-    public @ResponseBody Order createOrder(@RequestBody Order newOrder) {        return orderService.createNewOrder(newOrder);    }
+    public @ResponseBody Order createOrder(@RequestBody OrderDto newOrder) {        return orderService.createNewOrder(newOrder);    }
 
     @GetMapping(value = "/list")
     public ResponseEntity<List<Order>> getAllOrders() {       return  ResponseEntity.ok(orderService.getAllOrders());    }
@@ -30,7 +31,7 @@ public class OrderController {
     @GetMapping (value = "/list/customerId/{customerId}")
     public ResponseEntity<List<Order>> getAllOrdersByCustomerId(@PathVariable Integer customerId) {       return  ResponseEntity.ok(orderService.getAllOrdersByCustomerId(customerId));}
 
- /* TODO
+
     @GetMapping (value = "/{id}")
     public ResponseEntity<Order> getOrderById(@PathVariable Integer id) {
         Order pizza = orderService.getOrderById(id);
@@ -39,23 +40,23 @@ public class OrderController {
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity<String> deleteOrder(@PathVariable Integer id){
+    @PutMapping(value = "/update")
+    public ResponseEntity<String> updateOrder(@RequestBody Order order){
         try {
-            orderService.deletePizza(id);
+            orderService.updateOrder(order);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    @PutMapping(value = "/update")
-    public ResponseEntity<String> updateOrder(@RequestBody Order order){
+    @PutMapping(value = "/{id}/status/{status}")
+    public ResponseEntity<String> updateOrder(@PathVariable Integer id, @PathVariable ORDER_STATUS status){
         try {
-            orderService.updatePizza(pizza);
+            orderService.updateOrderStatus(id, status);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    }*/
+    }
 }

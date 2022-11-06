@@ -19,6 +19,6 @@ public interface PizzaRepository extends JpaRepository<Pizza, Integer> {
 
     @Modifying
     @Query("UPDATE Pizza p SET p.active = ?1 WHERE p.id = ?2")
-    public List<Pizza> updateActiveStatus(boolean active, Integer id);
+    public void updateActiveStatus(boolean active, Integer id);
 
 }

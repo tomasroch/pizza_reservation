@@ -4,6 +4,7 @@ import com.pizza.pizza_reservation.enums.ORDER_STATUS;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Entity
 public class Order {
@@ -17,10 +18,10 @@ public class Order {
   @Enumerated(EnumType.STRING)
   private ORDER_STATUS status;
   @Column(updatable = false)
-  private java.sql.Date created;
-  private java.sql.Date updated;
+  private Date created;
+  private Date updated;
   private Integer customerId;
-  private java.sql.Date estimatedDelivery;
+  private Date estimatedDelivery;
 
   @ManyToOne
   @JoinColumn(name="address_id", nullable=false)
@@ -54,20 +55,20 @@ public class Order {
   }
 
 
-  public java.sql.Date getCreated() {
+  public Date getCreated() {
     return created;
   }
 
-  public void setCreated(java.sql.Date created) {
+  public void setCreated(Date created) {
     this.created = created;
   }
 
 
-  public java.sql.Date getUpdated() {
+  public Date getUpdated() {
     return updated;
   }
 
-  public void setUpdated(java.sql.Date updated) {
+  public void setUpdated(Date updated) {
     this.updated = updated;
   }
 
@@ -81,11 +82,11 @@ public class Order {
   }
 
 
-  public java.sql.Date getEstimatedDelivery() {
+  public Date getEstimatedDelivery() {
     return estimatedDelivery;
   }
 
-  public void setEstimatedDelivery(java.sql.Date estimatedDelivery) {
+  public void setEstimatedDelivery(Date estimatedDelivery) {
     this.estimatedDelivery = estimatedDelivery;
   }
 

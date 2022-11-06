@@ -16,6 +16,6 @@ public interface IngredientRepository extends JpaRepository<Ingredient, Integer>
 
     @Modifying
     @Query("UPDATE Ingredient i SET i.active = ?1 WHERE i.id = ?2")
-    public List<Ingredient> updateActiveStatus(boolean active, Integer id);
+    public void updateActiveStatus(boolean active, Integer id);
 
 }
