@@ -1,6 +1,6 @@
 package com.pizza.pizza_reservation.controller;
 
-import com.pizza.pizza_reservation.domain.Order;
+import com.pizza.pizza_reservation.domain.Orders;
 import com.pizza.pizza_reservation.dto.OrderDto;
 import com.pizza.pizza_reservation.enums.ORDER_STATUS;
 import com.pizza.pizza_reservation.service.OrderService;
@@ -20,30 +20,30 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping(value = "/create")
-    public @ResponseBody Order createOrder(@RequestBody OrderDto newOrder) {        return orderService.createNewOrder(newOrder);    }
+    public @ResponseBody Orders createOrder(@RequestBody OrderDto newOrder) {        return orderService.createNewOrder(newOrder);    }
 
     @GetMapping(value = "/list")
-    public ResponseEntity<List<Order>> getAllOrders() {       return  ResponseEntity.ok(orderService.getAllOrders());    }
+    public ResponseEntity<List<Orders>> getAllOrders() {       return  ResponseEntity.ok(orderService.getAllOrders());    }
 
     @GetMapping (value = "/list/status/{status}")
-    public ResponseEntity<List<Order>> getAllOrdersByStatus(@PathVariable ORDER_STATUS status) {       return  ResponseEntity.ok(orderService.getAllOrdersByStatus(status));}
+    public ResponseEntity<List<Orders>> getAllOrdersByStatus(@PathVariable ORDER_STATUS status) {       return  ResponseEntity.ok(orderService.getAllOrdersByStatus(status));}
 
     @GetMapping (value = "/list/customerId/{customerId}")
-    public ResponseEntity<List<Order>> getAllOrdersByCustomerId(@PathVariable Integer customerId) {       return  ResponseEntity.ok(orderService.getAllOrdersByCustomerId(customerId));}
+    public ResponseEntity<List<Orders>> getAllOrdersByCustomerId(@PathVariable Integer customerId) {       return  ResponseEntity.ok(orderService.getAllOrdersByCustomerId(customerId));}
 
 
     @GetMapping (value = "/{id}")
-    public ResponseEntity<Order> getOrderById(@PathVariable Integer id) {
-        Order pizza = orderService.getOrderById(id);
+    public ResponseEntity<Orders> getOrderById(@PathVariable Integer id) {
+        Orders pizza = orderService.getOrderById(id);
         if (pizza != null)
             return  ResponseEntity.ok(pizza);
         return ResponseEntity.notFound().build();
     }
 
     @PutMapping(value = "/update")
-    public ResponseEntity<String> updateOrder(@RequestBody Order order){
+    public ResponseEntity<String> updateOrder(@RequestBody Orders orders){
         try {
-            orderService.updateOrder(order);
+            orderService.updateOrder(orders);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

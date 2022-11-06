@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="56AC192D-D8FB-983B-9747-E56D9AE6DDE7" name="order">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="56AC192D-D8FB-983B-9747-E56D9AE6DDE7" name="orders">
 <createdBy>user</createdBy>
 <createdTime>2022-10-28 08:09:40 UTC</createdTime>
 <ownerDesignName>pizza_reservation</ownerDesignName>
@@ -107,7 +107,7 @@
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="C537E60F-F47B-635B-F45B-3EAD3CCF8B30" name="order PK">
+<identifier id="C537E60F-F47B-635B-F45B-3EAD3CCF8B30" name="orders PK">
 <createdBy>user</createdBy>
 <createdTime>2022-10-28 08:09:53 UTC</createdTime>
 <ownerDesignName>pizza_reservation</ownerDesignName>

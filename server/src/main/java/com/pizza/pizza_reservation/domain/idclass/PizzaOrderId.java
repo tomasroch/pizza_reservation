@@ -7,6 +7,9 @@ public class PizzaOrderId implements Serializable {
     private Integer orderId;
     private Integer pizzaId;
 
+    public PizzaOrderId() {
+    }
+
     public PizzaOrderId(Integer orderId, Integer pizzaId) {
         this.orderId = orderId;
         this.pizzaId = pizzaId;

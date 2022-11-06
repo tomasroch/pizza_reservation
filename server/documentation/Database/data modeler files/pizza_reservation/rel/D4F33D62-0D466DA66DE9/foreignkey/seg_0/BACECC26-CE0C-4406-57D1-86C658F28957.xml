@@ -4,7 +4,7 @@
 <createdTime>2022-10-29 07:41:11 UTC</createdTime>
 <generatorID>F9FEBCB7-B93D-ADB9-0C7E-92FF3FF050C2</generatorID>
 <ownerDesignName>pizza_reservation</ownerDesignName>
-<referredTableLongName>order</referredTableLongName>
+<referredTableLongName>orders</referredTableLongName>
 <deleteRule>NO ACTION</deleteRule>
 <referredTableID>4F73B4AD-7620-F41E-DF56-7650191ADCDB</referredTableID>
 <keyObject>3A560C7D-E91F-72F0-0E4A-86B6BF71817F</keyObject>

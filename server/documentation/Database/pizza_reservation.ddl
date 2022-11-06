@@ -37,7 +37,7 @@ CREATE TABLE ingredient (
 
 ALTER TABLE ingredient ADD CONSTRAINT ingredient_pk PRIMARY KEY ( id );
 
-CREATE TABLE "order" (
+CREATE TABLE "orders" (
     id                   INTEGER NOT NULL,
     price                INTEGER NOT NULL,
     status               VARCHAR2(50) NOT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE "order" (
     address_id           INTEGER
 );
 
-ALTER TABLE "order" ADD CONSTRAINT order_pk PRIMARY KEY ( id );
+ALTER TABLE "orders" ADD CONSTRAINT order_pk PRIMARY KEY ( id );
 
 CREATE TABLE pizza (
     id            INTEGER NOT NULL,
@@ -101,11 +101,11 @@ ALTER TABLE customer
     ADD CONSTRAINT customer_user_fk FOREIGN KEY ( user_id )
         REFERENCES "user" ( id );
 
-ALTER TABLE "order"
+ALTER TABLE "orders"
     ADD CONSTRAINT order_customer_fk FOREIGN KEY ( customer_id )
         REFERENCES customer ( id );
 
-ALTER TABLE "order"
+ALTER TABLE "orders"
     ADD CONSTRAINT order_address_fk FOREIGN KEY ( address_id )
         REFERENCES address ( id );
 
@@ -119,7 +119,7 @@ ALTER TABLE pizza_ingredient
 
 ALTER TABLE pizza_order
     ADD CONSTRAINT pizza_order_order_fk FOREIGN KEY ( order_id )
-        REFERENCES "order" ( id );
+        REFERENCES "orders" ( id );
 
 ALTER TABLE pizza_order
     ADD CONSTRAINT pizza_order_pizza_fk FOREIGN KEY ( pizza_id )
@@ -133,7 +133,7 @@ ALTER TABLE customer
     ADD CONSTRAINT customer_user_fk FOREIGN KEY ( user_id )
         REFERENCES "user" ( id );
 
-ALTER TABLE "order"
+ALTER TABLE "orders"
     ADD CONSTRAINT order_customer_fk FOREIGN KEY ( customer_id )
         REFERENCES customer ( id );
 
@@ -147,7 +147,7 @@ ALTER TABLE pizza_ingredient
 
 ALTER TABLE pizza_order
     ADD CONSTRAINT pizza_order_order_fk FOREIGN KEY ( order_id )
-        REFERENCES "order" ( id );
+        REFERENCES "orders" ( id );
 
 ALTER TABLE pizza_order
     ADD CONSTRAINT pizza_order_pizza_fk FOREIGN KEY ( pizza_id )
@@ -170,9 +170,13 @@ ALTER TABLE PIZZA ADD (ACTIVE NUMBER(1) DEFAULT 0 NOT NULL);
 
 ALTER TABLE INGREDIENT ADD (ACTIVE NUMBER(1) DEFAULT 0 NOT NULL);
 
-ALTER TABLE "order" MODIFY CREATED DEFAULT SYSDATE;
+ALTER TABLE "orders" MODIFY CREATED DEFAULT SYSDATE;
 
-ALTER TABLE "order" MODIFY (price NULL);
+ALTER TABLE "orders" MODIFY CREATED DEFAULT ON NULL SYSDATE;
+
+ALTER TABLE "orders" MODIFY (price NULL);
+
+ALTER TABLE "user" RENAME TO USERZ;
 
 
 -- Oracle SQL Developer Data Modeler Summary Report: 

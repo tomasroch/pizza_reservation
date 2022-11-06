@@ -9,7 +9,6 @@ import javax.persistence.*;
 public class PizzaOrder {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer orderId;
   private Integer pizzaId;
   private Integer amount;

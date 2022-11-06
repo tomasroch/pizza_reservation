@@ -33,13 +33,14 @@ public class OrderService {
     private PizzaOrderRepository pizzaOrderRepository;
 
     @Transactional
-    public Order createNewOrder(OrderDto newOrder) {
-        Order order = new Order();
-        order.setStatus(ORDER_STATUS.NEW);
-        order.setEstimatedDelivery(Date.from(Instant.now().plusSeconds(3600)));
+    public Orders createNewOrder(OrderDto newOrder) {
+        Orders orders = new Orders();
+        orders.setStatus(ORDER_STATUS.NEW);
+        orders.setCreated(new Date());
+        orders.setEstimatedDelivery(Date.from(Instant.now().plusSeconds(3600)));
 
         if (newOrder.getCustomerId() != null){
-            order.setCustomerId(newOrder.getCustomerId());
+            orders.setCustomerId(newOrder.getCustomerId());
         } else {
             Customer customer = new Customer();
             customer.setFirstName(newOrder.getFirstName());
@@ -48,23 +49,23 @@ public class OrderService {
             customer.setPhone(newOrder.getPhone());
             customer = customerRepository.save(customer);
 
-            order.setCustomerId(customer.getId());
+            orders.setCustomerId(customer.getId());
         }
         if (newOrder.getIdAddress() != null){
             Address address = addressRepository.getReferenceById(newOrder.getIdAddress());
-            order.setAddress(address);
+            orders.setAddress(address);
         } else {
             Address address = new Address();
             address.setCity(newOrder.getCity());
             address.setStreet(newOrder.getStreet());
             address.setPostalCode(newOrder.getPostalCode());
             address = addressRepository.save(address);
-            order.setAddress(address);
+            orders.setAddress(address);
         }
-        order = orderRepository.save(order);
-        Integer orderId = order.getId();
+        orders = orderRepository.save(orders);
+        Integer orderId = orders.getId();
         BigDecimal price = BigDecimal.ZERO;
-        for(Map.Entry<Integer, Integer> entry : newOrder.getPizzaAmmount().entrySet()){
+        for(Map.Entry<Integer, Integer> entry : newOrder.getPizzaAmount().entrySet()){
             Pizza pizza = pizzaRepository.getReferenceById(entry.getKey());
             BigDecimal itemQantity = BigDecimal.valueOf(entry.getValue());
             price = price.add(pizza.getPrice().multiply(itemQantity));
@@ -74,19 +75,19 @@ public class OrderService {
             pizzaOrder.setAmount(entry.getValue());
             pizzaOrderRepository.save(pizzaOrder);
         }
-        order.setPrice(price);
-        return orderRepository.save(order);
+        orders.setPrice(price);
+        return orderRepository.save(orders);
     }
 
-    public List<Order> getAllOrders(){ return orderRepository.findAll();}
+    public List<Orders> getAllOrders(){ return orderRepository.findAll();}
 
-    public Order getOrderById(Integer id){ return orderRepository.getReferenceById(id);}
+    public Orders getOrderById(Integer id){ return orderRepository.getReferenceById(id);}
 
-    public List<Order> getAllOrdersByStatus(ORDER_STATUS status){ return orderRepository.getAllOrdersByStatus(status);}
+    public List<Orders> getAllOrdersByStatus(ORDER_STATUS status){ return orderRepository.getAllOrdersByStatus(status);}
 
-    public List<Order> getAllOrdersByCustomerId(Integer customerId){ return orderRepository.getAllOrdersByCustomerId(customerId);}
+    public List<Orders> getAllOrdersByCustomerId(Integer customerId){ return orderRepository.getAllOrdersByCustomerId(customerId);}
 
-    public void updateOrder(Order order){ orderRepository.save(order);}
+    public void updateOrder(Orders orders){ orderRepository.save(orders);}
 
     public void updateOrderStatus(Integer orderId, ORDER_STATUS status){ orderRepository.updateActiveStatus(status, orderId, new Date());}
 }

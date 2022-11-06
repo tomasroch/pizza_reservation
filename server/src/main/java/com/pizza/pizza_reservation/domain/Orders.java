@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-public class Order {
+public class Orders {
 
   @Id
   @GeneratedValue(generator = "orderSeq")

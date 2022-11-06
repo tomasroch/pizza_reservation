@@ -5,7 +5,7 @@ import com.pizza.pizza_reservation.enums.USER_ROLE;
 import javax.persistence.*;
 
 @Entity
-public class User {
+public class Userz {
 
   @Id
   @GeneratedValue(generator = "userSeq")

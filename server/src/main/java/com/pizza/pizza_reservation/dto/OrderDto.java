@@ -14,7 +14,7 @@ public class OrderDto {
 
     private String phone;
 
-    Map<Integer, Integer> pizzaAmmount;
+    Map<Integer, Integer> pizzaAmount;
 
     private Integer idAddress;
 
@@ -62,7 +62,7 @@ public class OrderDto {
 
     public void setPhone(String phone) {        this.phone = phone;    }
 
-    public Map<Integer, Integer> getPizzaAmmount() {        return pizzaAmmount;    }
+    public Map<Integer, Integer> getPizzaAmount() {        return pizzaAmount;    }
 
-    public void setPizzaAmmount(Map<Integer, Integer> pizzaAmmount) {        this.pizzaAmmount = pizzaAmmount;    }
+    public void setPizzaAmount(Map<Integer, Integer> pizzaAmount) {        this.pizzaAmount = pizzaAmount;    }
 }
