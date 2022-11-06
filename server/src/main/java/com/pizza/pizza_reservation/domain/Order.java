@@ -16,6 +16,7 @@ public class Order {
 
   @Enumerated(EnumType.STRING)
   private ORDER_STATUS status;
+  @Column(updatable = false)
   private java.sql.Date created;
   private java.sql.Date updated;
   private Integer customerId;
