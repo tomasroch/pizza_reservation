@@ -14,6 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/api/order")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class OrderController {
 
     @Autowired
