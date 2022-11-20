@@ -81,4 +81,8 @@ public class Pizza {
   public boolean getActive() {    return active;  }
 
   public void setActive(boolean active) {    this.active = active;  }
+
+  public List<Ingredient> getIngredients() {    return ingredients;  }
+
+  public void setIngredients(List<Ingredient> ingredients) {    this.ingredients = ingredients;  }
 }

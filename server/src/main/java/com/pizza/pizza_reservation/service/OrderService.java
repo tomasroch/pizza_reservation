@@ -6,6 +6,7 @@ import com.pizza.pizza_reservation.enums.ORDER_STATUS;
 import com.pizza.pizza_reservation.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
@@ -13,6 +14,7 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 public class OrderService {
@@ -34,6 +36,16 @@ public class OrderService {
 
     @Transactional
     public Orders createNewOrder(OrderDto newOrder) {
+        if (Objects.isNull(newOrder.getCity()) ||
+        Objects.isNull(newOrder.getStreet()) ||
+        Objects.isNull(newOrder.getPostalCode()) ||
+        Objects.isNull(newOrder.getPhone()) ||
+        Objects.isNull(newOrder.getLastName()) ||
+        Objects.isNull(newOrder.getFirstName()) ||
+        newOrder.getPizzaAmount().isEmpty()
+        ){
+            throw new IllegalArgumentException("Any of mandatory objects are null");
+        }
         Orders orders = new Orders();
         orders.setStatus(ORDER_STATUS.NEW);
         orders.setCreated(new Date());

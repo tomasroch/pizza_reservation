@@ -21,7 +21,7 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping(value = "/create")
-    public @ResponseBody Orders createOrder(@RequestBody OrderDto newOrder) {        return orderService.createNewOrder(newOrder);    }
+    public ResponseEntity<Orders> createOrder(@RequestBody OrderDto newOrder) {        return ResponseEntity.ok(orderService.createNewOrder(newOrder));    }
 
     @GetMapping(value = "/list")
     public ResponseEntity<List<Orders>> getAllOrders() {       return  ResponseEntity.ok(orderService.getAllOrders());    }
