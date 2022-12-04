@@ -12,4 +12,5 @@ public class ExceptionHandlerAdvice {
     public ResponseEntity<?> handleIllegalArgumentException(IllegalArgumentException ex){
         return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(ex.getMessage());
     }
+    // I just only need git functions
 }
