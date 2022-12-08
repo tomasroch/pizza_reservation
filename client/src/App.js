@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Navbar from './components/layout/Navbar';
 import { Routes, Route } from 'react-router'
 import { ThemeProvider } from '@mui/material';
@@ -12,7 +12,8 @@ import AboutUs from './pages/AboutUs';
 import Contact from './pages/Contact';
 import Footer from './components/layout/Footer';
 import Cart from './pages/Cart';
-import { CartContext, CartContextProvider } from './CartContext';
+import { AppContextProvider } from './context/AppContext';
+import { UserContextProvider } from './context/UserContext';
 
 const appTheme = createTheme({
   palette: {
@@ -24,7 +25,7 @@ const appTheme = createTheme({
       main: grey[900]
     },
     gray: {
-      main: grey[200]
+      main: grey[400]
     }
   }
 })
@@ -32,19 +33,21 @@ const appTheme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={appTheme}>
-      <CartContextProvider>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="register" element={<Register />} />
-          <Route path="login" element={<Login />} />
-          <Route path="menu" element={<Menu />} />
-          <Route path="about-us" element={<AboutUs />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="cart" element={<Cart />} />
-        </Routes>
-        <Footer />
-      </CartContextProvider>
+      <UserContextProvider>
+        <AppContextProvider>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="register" element={<Register />} />
+            <Route path="login" element={<Login />} />
+            <Route path="menu" element={<Menu />} />
+            <Route path="about-us" element={<AboutUs />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="cart" element={<Cart />} />
+          </Routes>
+          <Footer />
+        </AppContextProvider>
+      </UserContextProvider>
     </ThemeProvider>
   );
 }

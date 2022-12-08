@@ -1,33 +1,30 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Grid } from "@mui/material";
-import PizzaCard from "../components/PizzaCard";
+import PizzaCard from "../components/pizza/PizzaCard";
 import Layout from "../components/layout/Layout";
-import axios from "axios";
-import { CartContext } from "../CartContext";
+import { AppContext } from "../context/AppContext";
+import PizzaDataService from "../services/PizzaService";
 
 function Menu() {
     const [pizzaList, setPizzaList] = useState([])
-    const { addItemToCart, cartItems } = useContext(CartContext)
+    const { addItemToCart, showSnackbar } = useContext(AppContext)
 
-    const loadPizzaList = () => {
-        axios
-            .get('http://localhost:8080/api/pizza/list', {})
-            .then(
-                (response) => {
-                    setPizzaList(response.data)
-                },
-                (error) => console.log(error))
+    const loadActivePizzas = () => {
+        PizzaDataService.getAll()
+            .then((result) => {
+                setPizzaList(result.data)
+            }).catch((err) => {
+                console.log(err)
+            });
     }
 
     useEffect(() => {
-        loadPizzaList();
+        loadActivePizzas();
     }, [])
 
-    const addPizzaToCart = (id, count) => {
-        addItemToCart({
-            pizzaId: id,
-            amount: count
-        })
+    const addPizzaToCart = (pizza) => {
+        addItemToCart(pizza)
+        showSnackbar('Item successfully added!', 'success')
     }
 
     return (
