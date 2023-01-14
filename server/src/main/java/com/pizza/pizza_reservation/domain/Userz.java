@@ -2,7 +2,7 @@ package com.pizza.pizza_reservation.domain;
 
 import com.pizza.pizza_reservation.enums.USER_ROLE;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class Userz {

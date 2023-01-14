@@ -2,7 +2,7 @@ package com.pizza.pizza_reservation.domain;
 
 import com.pizza.pizza_reservation.enums.ORDER_STATUS;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 

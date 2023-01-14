@@ -1,6 +1,7 @@
 package com.pizza.pizza_reservation.domain;
 
-import javax.persistence.*;
+
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
