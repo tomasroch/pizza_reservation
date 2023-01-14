@@ -8,8 +8,11 @@ import LocalPizzaIcon from '@mui/icons-material/LocalPizza';
 import LoginIcon from '@mui/icons-material/Login';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import NavButton from '../NavButton';
-import { CartContext } from '../../CartContext';
+import LogoutIcon from '@mui/icons-material/Logout';
+import NavButton from '../common/NavButton';
+import { AppContext } from '../../context/AppContext';
+import { UserContext } from '../../context/UserContext';
+import { Avatar, IconButton } from '@mui/material';
 
 const menuItems = [
     {
@@ -27,7 +30,8 @@ const menuItems = [
 ]
 
 function Navbar() {
-    const { cartItems } = useContext(CartContext)
+    const { cartItemsCount } = useContext(AppContext)
+    const { user, logoutUser } = useContext(UserContext)
 
     return (
         <AppBar position="fixed">
@@ -64,9 +68,33 @@ function Navbar() {
                     </Box>
 
                     <Box sx={{ flexGrow: 0, display: 'flex' }}>
-                        <NavButton text={cartItems.length} linkTo='/cart' icon={<ShoppingCartIcon />} />
-                        <NavButton text='Login' linkTo='/login' icon={<LoginIcon />} />
-                        <NavButton text='Register' linkTo='/register' icon={<HowToRegIcon />} />
+                        <NavButton text={cartItemsCount} linkTo='/cart' icon={<ShoppingCartIcon />} />
+
+                        {!user ? (
+                            <div>
+                                <IconButton sx={{ mx: 1 }}>
+                                    <Avatar>AB</Avatar>
+                                </IconButton>
+                                <IconButton
+                                    onClick={logoutUser()}
+                                    sx={{
+                                        my: 1,
+                                        color: 'white',
+                                        ':hover': {
+                                            backgroundColor: 'primary.secondary'
+                                        }
+                                    }}
+                                >
+                                    <LogoutIcon />
+                                </IconButton>
+                            </div>
+                        ) : (
+                            <div>
+                                <NavButton text='Login' linkTo='/login' icon={<LoginIcon />} />
+                                <NavButton text='Sing Up' linkTo='/register' icon={<HowToRegIcon />} />
+                            </div>
+                        )}
+
                     </Box>
 
                 </Toolbar>
