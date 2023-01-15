@@ -4,7 +4,7 @@ import com.pizza.pizza_reservation.domain.*;
 import com.pizza.pizza_reservation.dto.OrderDto;
 import com.pizza.pizza_reservation.enums.ORDER_STATUS;
 import com.pizza.pizza_reservation.repository.*;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,7 +63,7 @@ public class OrderService {
             orders.setCustomerId(customer.getId());
         }
         if (newOrder.getIdAddress() != null){
-            Address address = addressRepository.getReferenceById(newOrder.getIdAddress());
+            Address address = addressRepository.getById(newOrder.getIdAddress());
             orders.setAddress(address);
         } else {
             Address address = new Address();
@@ -77,7 +77,7 @@ public class OrderService {
         Integer orderId = orders.getId();
         BigDecimal price = BigDecimal.ZERO;
         for(Map.Entry<Integer, Integer> entry : newOrder.getPizzaAmount().entrySet()){
-            Pizza pizza = pizzaRepository.getReferenceById(entry.getKey());
+            Pizza pizza = pizzaRepository.getById(entry.getKey());
             BigDecimal itemQantity = BigDecimal.valueOf(entry.getValue());
             price = price.add(pizza.getPrice().multiply(itemQantity));
             PizzaOrder pizzaOrder = new PizzaOrder();
@@ -92,7 +92,7 @@ public class OrderService {
 
     public List<Orders> getAllOrders(){ return orderRepository.findAll();}
 
-    public Orders getOrderById(Integer id){ return orderRepository.getReferenceById(id);}
+    public Orders getOrderById(Integer id){ return orderRepository.getById(id);}
 
     public List<Orders> getAllOrdersByStatus(ORDER_STATUS status){ return orderRepository.getAllOrdersByStatus(status);}
 

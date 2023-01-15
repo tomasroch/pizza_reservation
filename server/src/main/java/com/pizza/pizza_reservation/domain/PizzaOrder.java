@@ -2,7 +2,7 @@ package com.pizza.pizza_reservation.domain;
 
 import com.pizza.pizza_reservation.domain.idclass.PizzaOrderId;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @IdClass(PizzaOrderId.class)

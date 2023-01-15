@@ -1,6 +1,6 @@
 package com.pizza.pizza_reservation.domain;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 public class Ingredient {
