@@ -1,11 +1,15 @@
 package com.pizza.pizza_reservation.domain;
 
 import com.pizza.pizza_reservation.enums.USER_ROLE;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
-public class Userz {
+public class Userz implements UserDetails {
 
   @Id
   @GeneratedValue(generator = "userSeq")
@@ -30,18 +34,36 @@ public class Userz {
   }
 
 
+  @Override
   public String getUsername() {
     return username;
   }
+
+  @Override
+  public boolean isAccountNonExpired() {    return true;  }
+
+  @Override
+  public boolean isAccountNonLocked() {    return true;  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {    return true;  }
+
+  @Override
+  public boolean isEnabled() {    return true;  }
+
+  @Override
+  public String getPassword() {
+    return password;
+  }
+
+  @Override // role has to extend grantedAuthority...
+  public Collection<? extends GrantedAuthority> getAuthorities() {    return List.of(role);  }
 
   public void setUsername(String username) {
     this.username = username;
   }
 
 
-  public String getPassword() {
-    return password;
-  }
 
   public void setPassword(String password) {
     this.password = password;
