@@ -1,4 +1,4 @@
-import { Box, Divider, IconButton, Table, TableBody, TableCell, TableHead, TableRow, Tooltip, Typography } from "@mui/material";
+import { Box, Divider, IconButton, Table, TableBody, TableCell, TableHead, TableRow, TextField, Tooltip, Typography } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 import BorderBox from "../common/BorderBox";
@@ -66,32 +66,26 @@ function CartItemsTable() {
                                 </colgroup>
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell
-                                            className="tableHeader"
-                                        >
+                                        <TableCell>
                                             Product
                                         </TableCell>
                                         <TableCell
                                             align="right"
-                                            className="tableHeader"
                                         >
                                             Price
                                         </TableCell>
                                         <TableCell
                                             align="right"
-                                            className="tableHeader"
                                         >
                                             Quantity
                                         </TableCell>
                                         <TableCell
                                             align="right"
-                                            className="tableHeader"
                                         >
                                             Total Price
                                         </TableCell>
                                         <TableCell
                                             align="right"
-                                            className="tableHeader"
                                         >
                                             <Tooltip title="Clear cart">
                                                 <IconButton onClick={() => handleClearCart()} color="primary">
@@ -107,21 +101,13 @@ function CartItemsTable() {
                                             <TableCell>{row.name}</TableCell>
                                             <TableCell align="right">{row.price.toFixed(2)},-</TableCell>
                                             <TableCell align="right">
-                                                <IconButton
-                                                    onClick={() => changeItemAmount(row.id, row.amount - 1)}
+                                                <TextField
+                                                    value={row.amount}
+                                                    onChange={(e) => changeItemAmount(row.id, e.target.value)}
+                                                    type="number"
                                                     size="small"
-                                                    sx={{ mr: 1 }}
-                                                >
-                                                    <RemoveIcon fontSize="inherit" />
-                                                </IconButton>
-                                                {row.amount}
-                                                <IconButton
-                                                    onClick={() => changeItemAmount(row.id, row.amount + 1)}
-                                                    size="small"
-                                                    sx={{ ml: 1 }}
-                                                >
-                                                    <AddIcon fontSize="inherit" />
-                                                </IconButton>
+                                                    InputLabelProps={{ shrink: true }}
+                                                />
                                             </TableCell>
                                             <TableCell align="right">{(row.price * row.amount).toFixed(2)},-</TableCell>
                                             <TableCell align="right">

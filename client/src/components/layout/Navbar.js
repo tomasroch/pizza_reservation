@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,8 +11,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LogoutIcon from '@mui/icons-material/Logout';
 import NavButton from '../common/NavButton';
 import { AppContext } from '../../context/AppContext';
-import { UserContext } from '../../context/UserContext';
 import { Avatar, IconButton } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const menuItems = [
     {
@@ -30,8 +30,13 @@ const menuItems = [
 ]
 
 function Navbar() {
-    const { cartItemsCount } = useContext(AppContext)
-    const { user, logoutUser } = useContext(UserContext)
+    const { cartItemsCount, logoutUser } = useContext(AppContext)
+    const [isUserLogin, setIsUserLogin] = useState(false)
+
+    const doLogoutUser = (e) => {
+        e.preventDefault()
+        logoutUser()
+    }
 
     return (
         <AppBar position="fixed">
@@ -40,21 +45,13 @@ function Navbar() {
                     <LocalPizzaIcon fontSize='large' />
                     <Typography
                         variant="h4"
-                        noWrap
-                        component="a"
-                        href="/"
                         sx={{
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
                             color: 'inherit',
                             textDecoration: 'none',
-                            ml: 1
                         }}
                     >
                         Pizza.cz
                     </Typography>
-
-
                     <Box
                         sx={{
                             flexGrow: 1,
@@ -70,13 +67,15 @@ function Navbar() {
                     <Box sx={{ flexGrow: 0, display: 'flex' }}>
                         <NavButton text={cartItemsCount} linkTo='/cart' icon={<ShoppingCartIcon />} />
 
-                        {!user ? (
+                        {isUserLogin ? (
                             <div>
-                                <IconButton sx={{ mx: 1 }}>
-                                    <Avatar>AB</Avatar>
-                                </IconButton>
+                                <Link to='my-account'>
+                                    <IconButton sx={{ mx: 1 }}>
+                                        <Avatar>AB</Avatar>
+                                    </IconButton>
+                                </Link>
                                 <IconButton
-                                    onClick={logoutUser()}
+                                    onClick={(e) => doLogoutUser(e)}
                                     sx={{
                                         my: 1,
                                         color: 'white',

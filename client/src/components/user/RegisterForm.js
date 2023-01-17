@@ -1,12 +1,16 @@
 import { Alert, Button, Divider, Grid, Stack, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import BorderBox from "../common/BorderBox";
 import TextDivider from "../common/TextDivider";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import UserDataService from "../../services/UserService";
+import { useNavigate } from "react-router-dom";
+import { AppContext } from "../../context/AppContext";
 
 function RegisterForm() {
+    const { showSnackbar } = useContext(AppContext)
+    const navigate = useNavigate();
     const [lastName, setLastName] = useState()
     const [firstName, setFirstName] = useState()
     const [email, setEmail] = useState()
@@ -25,17 +29,18 @@ function RegisterForm() {
             return
         }
 
-        UserDataService.register(
-            {
+        let data = { username: username, password: password, firstName: firstName, lastName: lastName, email: email, phone: phone }
 
-            }
-        )
+
+        UserDataService.register(data)
             .then((result) => {
-
+                showSnackbar("Registration was successful", 'success')
+                navigate("/")
+                return
             }).catch((err) => {
-                setError("Failed to register user")
+                setError("Failed to create new customer account")
+                return
             });
-
 
         setError("")
     }
@@ -87,6 +92,7 @@ function RegisterForm() {
                             label="Mobile phone"
                             id="phone"
                             required
+                            inputProps={{ maxLength: 9 }}
                             color="neutral"
                             fullWidth
                             onChange={(e) => setPhone(e.target.value)}
@@ -96,6 +102,7 @@ function RegisterForm() {
                         <TextField
                             label="Email"
                             id="email"
+                            type="email"
                             required
                             color="neutral"
                             fullWidth

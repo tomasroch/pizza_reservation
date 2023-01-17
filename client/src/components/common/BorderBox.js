@@ -6,10 +6,11 @@ function BorderBox(props) {
         <Box
             component={props.component}
             maxWidth={props.width ? props.width : 'md'}
-            p={3}
+            p={props.padding ? props.padding : 3}
             sx={{
                 border: 1,
                 borderRadius: 2,
+                bgcolor: 'white',
                 borderColor: 'gray.main'
             }}
         >

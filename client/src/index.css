@@ -1,9 +1,8 @@
 body {
   margin: 0;
-  background-color: #e7e7e7;
+  background-color: #f5f5f5;
 }
 
-.tableHeader {
-  background-color: #102738;
-  color: white !important;
+a {
+  text-decoration: none;
 }

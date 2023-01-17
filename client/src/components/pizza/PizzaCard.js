@@ -24,19 +24,18 @@ function PizzaCard(props) {
     }
 
     return (
-        <Card sx={{ maxWidth: 350, minWidth: 300 }}>
+        <Card elevation={0} sx={{ maxWidth: 350, minWidth: 300, }}>
             <CardMedia
                 component="img"
                 title=""
                 image="/img/pizza.png"
-                height="160"
+
             />
             <CardContent>
                 <Typography variant="h5" component="div" gutterBottom>
                     {props.name}
                 </Typography>
                 <Typography variant="subtitle1" gutterBottom>
-                    {props.ingredients}
                 </Typography>
             </CardContent>
             <CardActions>

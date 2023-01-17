@@ -10,7 +10,7 @@ function NavButton(props) {
                 my: 2,
                 color: 'white',
                 fontWeight: 'bold',
-                backgroundColor: props.icon != null ? 'primary.main' : '#102738',
+                backgroundColor: props.icon != null ? 'primary.main' : 'darkBlue.main',
                 m: 1,
                 ':hover': {
                     backgroundColor: 'primary.secondary',

@@ -1,10 +1,12 @@
 import React, { useState } from "react"
 import AlertSnackbar from "../components/common/AlertSnackbar";
-import { getCartCookie, setCartCookie, clearCartCookie, getCartCookieItemsCount } from "./SessionCookies";
+import { getCartCookie, setCartCookie, clearCartCookie, getCartCookieItemsCount, setUserCookie, clearUserCookie, getUserCookie } from "./SessionCookies";
 
 const AppContext = React.createContext({
     cartItems: [],
-    setCartItems: () => { }
+    setCartItems: () => { },
+    currentUser: {},
+    setCurrentUser: () => { }
 });
 
 function AppContextProvider(props) {
@@ -13,6 +15,7 @@ function AppContextProvider(props) {
     const [snackbarSeverity, setSnackbarSeverity] = useState()
     const [snackbarMessage, setSnackbarMessage] = useState()
     const [snackbarOpen, setSnackbarOpen] = useState(false)
+    const [currentUser, setCurrentUser] = useState(getUserCookie())
 
     const addItemToCart = (newPizza) => {
         let newCart = [...cartItems]
@@ -83,12 +86,29 @@ function AppContextProvider(props) {
         setSnackbarOpen(false)
     }
 
-    const value = { cartItems, addItemToCart, removeItem, cartItemsCount, clearCart, showSnackbar, changeItemAmount }
+    // USER
+
+    const loginUser = (data) => {
+        setCurrentUser(data)
+        setUserCookie(data)
+    }
+
+    const logoutUser = () => {
+        setCurrentUser(null)
+        clearUserCookie()
+    }
+
+    const getUserRole = () => {
+        return currentUser.role
+    }
+
+    const value = { cartItems, addItemToCart, removeItem, cartItemsCount, clearCart, showSnackbar, changeItemAmount, currentUser, loginUser, logoutUser, getUserRole }
 
     return (
         <AppContext.Provider value={value}>
             <AlertSnackbar
                 severity={snackbarSeverity}
+                autoHideDuration={10000}
                 message={snackbarMessage}
                 openSnackbar={snackbarOpen}
                 handleClose={closeSnackbar}

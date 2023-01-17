@@ -46,6 +46,8 @@ export const clearCartCookie = () => {
 export const getUserCookie = () => {
     const user = Cookies.get(USER_COOKIE)
 
+    return { username: 'karel69', firstName: 'Rostislav', lastName: 'Rosak', email: 'akadgsgs@shdsgh.com', phone: '1234567989' }
+
     if (user === undefined) {
         return undefined
     } else {

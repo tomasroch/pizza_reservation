@@ -208,7 +208,7 @@ function CustomerForm() {
                     </Button>
                 </Box>
             </BorderBox>
-        );
+        )
     } else {
         return (
             <div />
@@ -218,4 +218,4 @@ function CustomerForm() {
 
 }
 
-export default CustomerForm
+export default CustomerForm;
