@@ -1,5 +1,6 @@
 package com.pizza.pizza_reservation.controller;
 
+import com.pizza.pizza_reservation.domain.Address;
 import com.pizza.pizza_reservation.domain.Orders;
 import com.pizza.pizza_reservation.dto.OrderDto;
 import com.pizza.pizza_reservation.enums.ORDER_STATUS;
@@ -31,6 +32,9 @@ public class OrderController {
 
     @GetMapping (value = "/list/customerId/{customerId}")
     public ResponseEntity<List<Orders>> getAllOrdersByCustomerId(@PathVariable Integer customerId) {       return  ResponseEntity.ok(orderService.getAllOrdersByCustomerId(customerId));}
+
+    @GetMapping (value = "/addresses/list/customerId/{customerId}")
+    public ResponseEntity<List<Address>> getAllAddressesByCustomerId(@PathVariable Integer customerId) {       return  ResponseEntity.ok(orderService.getAllAddressesByCustomerId(customerId));}
 
 
     @GetMapping (value = "/{id}")

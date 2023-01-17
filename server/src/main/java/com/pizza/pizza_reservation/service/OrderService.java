@@ -10,10 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class OrderService {
@@ -88,6 +85,22 @@ public class OrderService {
         }
         orders.setPrice(price);
         return orderRepository.save(orders);
+    }
+
+    public List<Address> getAllAddressesByCustomerId(Integer customerId){
+        List<Orders> orders = orderRepository.getAllOrdersByCustomerId(customerId);
+        List<Address> customerAddresses = new ArrayList<>();
+        if (orders == null || orders.isEmpty())
+            return customerAddresses;
+
+        orders.forEach(o -> {
+            if (!customerAddresses.contains(o.getAddress())){
+                customerAddresses.add(o.getAddress());
+            }
+        });
+
+        return customerAddresses;
+
     }
 
     public List<Orders> getAllOrders(){ return orderRepository.findAll();}
