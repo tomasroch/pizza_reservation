@@ -10,8 +10,6 @@ public class CustomerDto {
     private String lastName;
     private String email;
     private String phone;
-    private Integer userId;
-
 
     public CustomerDto() {    }
 
@@ -39,7 +37,4 @@ public class CustomerDto {
 
     public void setPhone(String phone) {        this.phone = phone;    }
 
-    public Integer getUserId() {        return userId;    }
-
-    public void setUserId(Integer userId) {        this.userId = userId;    }
 }
