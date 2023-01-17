@@ -1,5 +1,7 @@
 package com.pizza.pizza_reservation;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.MediaType;
@@ -26,5 +28,8 @@ public class PizzaControllerTests extends ControllerTestAncestor {
         int status = mvcResult.getResponse().getStatus();
         assertEquals(OK, status);
         assertNotNull(mvcResult.getResponse().getContentAsString());
+        JSONArray json = new JSONArray(mvcResult.getResponse().getContentAsString());
+        System.out.println(json.toString(4));
     }
+
 }
