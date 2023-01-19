@@ -1,62 +1,75 @@
 import React, { useContext, useState } from "react";
-import { Alert, Box, Button, Divider, Grid, TextField, Typography, } from "@mui/material";
+import { Alert, Box, Button, CircularProgress, Divider, Grid, TextField, Typography, } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Link } from "react-router-dom";
-import axios from "axios";
 import BorderBox from "../common/BorderBox";
 import { AppContext } from "../../context/AppContext";
 import TextDivider from "../common/TextDivider";
+import OrderDataService from "../../services/OrderService"
+import { useNavigate } from "react-router";
+import { validNumberField } from "../../services/CommonUtils";
 
 function CustomerForm() {
-    const { cartItems } = useContext(AppContext)
+    const { cartItems, showSnackbar, clearCart, currentUser } = useContext(AppContext)
+    const navigate = useNavigate()
 
-    const [firstName, setFirstName] = useState();
-    const [lastName, setLastName] = useState();
-    const [email, setEmail] = useState();
-    const [phoneNo, setPhoneNo] = useState();
-    const [street, setStreet] = useState();
-    const [city, setCity] = useState();
-    const [postalCode, setPostalCode] = useState();
-    const [error, setError] = useState();
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phoneNo, setPhoneNo] = useState('');
+    const [street, setStreet] = useState('');
+    const [city, setCity] = useState('');
+    const [postalCode, setPostalCode] = useState('');
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false)
 
     const validFormFields = () => {
-        return firstName && lastName && email && phoneNo && street && city && postalCode
+        return street && city && postalCode && (currentUser || (firstName && lastName && email && phoneNo))
     }
 
-
-    const createOrder = () => {
-
+    const createOrder = (e) => {
+        e.preventDefault()
         if (!validFormFields()) {
             setError('All fields must be filled')
             return
         }
 
-        const orderItems = new Map(
-            cartItems.map(pizza => {
-                return [pizza.pizzaId, pizza.amount]
-            })
-        )
+        setLoading(true)
 
-        axios.post("http://localhost:8080/api/order/create", {
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            phone: phoneNo,
-            postalCode: postalCode,
+        const orderItems = new Map();
+        cartItems.map(pizza => {
+            orderItems[pizza.id.toString()] = pizza.amount.toString()
+        })
+
+        const data = {
             city: city,
             street: street,
-            pizzaAmount: orderItems
+            postalCode: postalCode,
+            pizzaAmount: orderItems,
+        }
 
-        }).then(
-            (response) => {
-                console.log('succes')
-            },
-            (error) => {
-                setError('Failed to create order!')
-                return;
-            }
-        )
+        if (!currentUser) {
+            data.firstName = firstName
+            data.lastName = lastName
+            data.email = email
+            data.phone = phoneNo
+        } else {
+            data.customerId = currentUser.customer.id
+        }
+
+        OrderDataService.createOrder(data)
+            .then((response) => {
+                showSnackbar('The order was successfully created', 'success')
+                clearCart()
+                navigate("/order/" + response.data.id)
+                return
+            }).catch((e) => {
+                setError('Failed to create order')
+                return
+            })
+
+        setLoading(false)
 
         setError('')
     }
@@ -65,6 +78,7 @@ function CustomerForm() {
         return (
             <BorderBox
                 component='form'
+                width='100%'
             >
                 <Typography
                     variant="h4"
@@ -72,58 +86,62 @@ function CustomerForm() {
                 >
                     Finish Order
                 </Typography>
+                {!currentUser &&
+                    <div>
+                        <TextDivider text="User information" />
 
-                <TextDivider text="User information" />
-
-                <Grid
-                    container
-                    direction="row"
-                    spacing={2}
-                >
-                    <Grid item xs={12} sm={6}>
-                        <TextField
-                            label="First name"
-                            id="firstName"
-                            required
-                            color="neutral"
-                            fullWidth
-                            onChange={(e) => setFirstName(e.target.value)}
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <TextField
-                            label="Last name"
-                            id="lastName"
-                            required
-                            color="neutral"
-                            fullWidth
-                            onChange={(e) => setLastName(e.target.value)}
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <TextField
-                            type="email"
-                            label="Email"
-                            id="email"
-                            required
-                            color="neutral"
-                            fullWidth
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <TextField
-                            inputProps={{ maxLength: 9 }}
-                            type="tel"
-                            label="Mobile phone"
-                            id="phoneNo"
-                            required
-                            color="neutral"
-                            fullWidth
-                            onChange={(e) => setPhoneNo(e.target.value)}
-                        />
-                    </Grid>
-                </Grid>
+                        <Grid
+                            container
+                            direction="row"
+                            spacing={2}
+                        >
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    label="First name"
+                                    id="firstName"
+                                    required
+                                    color="neutral"
+                                    fullWidth
+                                    onChange={(e) => setFirstName(e.target.value)}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    label="Last name"
+                                    id="lastName"
+                                    required
+                                    color="neutral"
+                                    fullWidth
+                                    onChange={(e) => setLastName(e.target.value)}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    type="email"
+                                    label="Email"
+                                    id="email"
+                                    required
+                                    color="neutral"
+                                    fullWidth
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    inputProps={{ maxLength: 9 }}
+                                    type="tel"
+                                    label="Mobile phone"
+                                    id="phoneNo"
+                                    required
+                                    value={phoneNo}
+                                    color="neutral"
+                                    fullWidth
+                                    onChange={(e) => validNumberField(e, setPhoneNo)}
+                                />
+                            </Grid>
+                        </Grid>
+                    </div>
+                }
                 <TextDivider text="Address" />
                 <Grid
                     container
@@ -156,9 +174,10 @@ function CustomerForm() {
                             label="Zip/Postal Code"
                             id="postalCode"
                             required
+                            value={postalCode}
                             color="neutral"
                             fullWidth
-                            onChange={(e) => setPostalCode(e.target.value)}
+                            onChange={(e) => validNumberField(e, setPostalCode)}
                         />
                     </Grid>
                 </Grid>
@@ -175,39 +194,50 @@ function CustomerForm() {
                     </Alert>
                 }
 
-                <Box
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        flexDirection: 'row-reverse',
-                        mt: 3,
-                    }}
-                >
-                    <Button
-                        onClick={createOrder}
-                        variant="contained"
-                        size="large"
-                        endIcon={<ArrowForwardIcon />}
-                        color="neutral"
+                {loading ?
+                    <Box
                         sx={{
-                            color: 'white'
+                            display: 'flex',
+                            justifyContent: 'center',
+                            mt: 3
                         }}
                     >
-                        Confirm Order
-                    </Button>
-                    <Button
-                        onClick={createOrder}
-                        variant="outlined"
-                        size="large"
-                        startIcon={<ArrowBackIcon />}
-                        component={Link}
-                        to="/menu"
-                        color="neutral"
+                        <CircularProgress />
+                    </Box>
+                    :
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            flexDirection: 'row-reverse',
+                            mt: 3,
+                        }}
                     >
-                        Back to menu
-                    </Button>
-                </Box>
-            </BorderBox>
+                        <Button
+                            onClick={createOrder}
+                            variant="contained"
+                            size="large"
+                            endIcon={<ArrowForwardIcon />}
+                            color="neutral"
+                            sx={{
+                                color: 'white'
+                            }}
+                        >
+                            Confirm Order
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            size="large"
+                            startIcon={<ArrowBackIcon />}
+                            component={Link}
+                            to="/menu"
+                            color="neutral"
+                        >
+                            Back to menu
+                        </Button>
+                    </Box>
+                }
+            </BorderBox >
         )
     } else {
         return (

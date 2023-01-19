@@ -12,7 +12,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import NavButton from '../common/NavButton';
 import { AppContext } from '../../context/AppContext';
 import { Avatar, IconButton } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const menuItems = [
     {
@@ -30,12 +30,17 @@ const menuItems = [
 ]
 
 function Navbar() {
-    const { cartItemsCount, logoutUser } = useContext(AppContext)
-    const [isUserLogin, setIsUserLogin] = useState(false)
+    const navigate = useNavigate();
+    const { cartItemsCount, currentUser, logoutUser } = useContext(AppContext)
 
     const doLogoutUser = (e) => {
         e.preventDefault()
         logoutUser()
+        navigate("/")
+    }
+
+    const getUserAvatar = () => {
+        return currentUser.customer.firstName.charAt(1).toUpperCase() + currentUser.customer.lastName.charAt(1).toUpperCase()
     }
 
     return (
@@ -67,11 +72,11 @@ function Navbar() {
                     <Box sx={{ flexGrow: 0, display: 'flex' }}>
                         <NavButton text={cartItemsCount} linkTo='/cart' icon={<ShoppingCartIcon />} />
 
-                        {isUserLogin ? (
+                        {currentUser ? (
                             <div>
                                 <Link to='my-account'>
                                     <IconButton sx={{ mx: 1 }}>
-                                        <Avatar>AB</Avatar>
+                                        <Avatar>{getUserAvatar()}</Avatar>
                                     </IconButton>
                                 </Link>
                                 <IconButton

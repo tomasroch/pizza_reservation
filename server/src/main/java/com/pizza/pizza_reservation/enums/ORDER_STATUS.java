@@ -1,6 +1,8 @@
 package com.pizza.pizza_reservation.enums;
 
-public enum ORDER_STATUS {
+import java.io.Serializable;
+
+public enum ORDER_STATUS implements Serializable {
     NEW,
     PROCESSING,
     SENT,

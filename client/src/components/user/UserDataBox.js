@@ -3,7 +3,7 @@ import BorderBox from "../common/BorderBox";
 import { Grid, Typography } from "@mui/material";
 
 function UserDataBox(props) {
-    const { user } = props
+    const { customer } = props
 
     return (
         <BorderBox padding={1}>
@@ -20,7 +20,7 @@ function UserDataBox(props) {
                 </Grid>
                 <Grid item xs={12} sm={8}>
                     <Typography variant="subtitle1" color="text.secondary">
-                        {user.firstName}
+                        {customer.firstName}
                     </Typography>
                 </Grid>
                 <Grid item xs={12} sm={4}>
@@ -30,7 +30,7 @@ function UserDataBox(props) {
                 </Grid>
                 <Grid item xs={12} sm={8}>
                     <Typography variant="subtitle1" color="text.secondary">
-                        {user.lastName}
+                        {customer.lastName}
                     </Typography>
                 </Grid>
                 <Grid item xs={12} sm={4}>
@@ -40,7 +40,7 @@ function UserDataBox(props) {
                 </Grid>
                 <Grid item xs={12} sm={8}>
                     <Typography variant="subtitle1" color="text.secondary">
-                        {user.email}
+                        {customer.email}
                     </Typography>
                 </Grid>
                 <Grid item xs={12} sm={4}>
@@ -50,7 +50,7 @@ function UserDataBox(props) {
                 </Grid>
                 <Grid item xs={12} sm={8}>
                     <Typography variant="subtitle1" color="text.secondary">
-                        +420 {user.phone}
+                        +420 {customer.phone}
                     </Typography>
                 </Grid>
             </Grid>

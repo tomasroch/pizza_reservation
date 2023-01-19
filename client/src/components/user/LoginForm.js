@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Alert, Box, Button, Divider, Stack, TextField, Typography } from "@mui/material";
-import axios from "axios";
 import BorderBox from "../common/BorderBox";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import UserDataService from "../../services/UserService";
+import { AppContext } from "../../context/AppContext";
+import { useNavigate } from "react-router";
 
 function LoginForm() {
-
+    const { loginUser, setJwtToken } = useContext(AppContext)
+    const navigate = useNavigate();
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
     const [error, setError] = useState()
@@ -19,15 +22,17 @@ function LoginForm() {
             return
         }
 
-        axios.post("http://localhost:8080/login", {
-            username: username,
-            password: password
-        }).then(response => {
-            // TODO
-        }, (error) => {
-            setError("Invalid credentials.")
-            return
-        })
+        UserDataService.login(username, password)
+            .then((response) => {
+                const user = response.data
+                setJwtToken(response.headers.get("Authorization"))
+                loginUser(user)
+                navigate("/")
+            }).catch((e) => {
+                setError('E')
+                return
+            })
+
         setError('')
     }
 
@@ -50,9 +55,8 @@ function LoginForm() {
                     Login
                 </Typography>
                 <TextField
-                    type="email"
-                    label="Email"
-                    id="email"
+                    label="Username"
+                    id="username"
                     required
                     color="neutral"
                     margin="normal"

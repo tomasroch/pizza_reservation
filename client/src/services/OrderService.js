@@ -1,22 +1,26 @@
 import axios from "axios";
-import { BASE_URL } from "./HttpCommon";
+import { BASE_URL, parseJwt } from "./HttpCommon";
 
 class OrderDataService {
 
-
-    // TODO
-    readAllUserOrders() {
-        return [{ id: 12, price: 150.2, status: 'CANCELLED', created: '12.12.2020', updated: '12.12.2022', estimatedDelivery: '25.25.20211' },
-        { id: 13, price: 150.2, status: 'CANCELLED', created: '12.12.2020', updated: '12.12.2022', estimatedDelivery: '25.25.20211' }]
+    readAllUserOrders(customerId) {
+        return axios.get(BASE_URL + 'order/list/customerId/' + customerId, {
+            headers: {
+                Authorization: parseJwt()
+            }
+        });
     }
 
     readOrder(id) {
-        return {
-            id: 12, price: 150.2, status: 'CANCELLED', created: '12.12.2020',
-            updated: '12.12.2022', estimatedDelivery: '25.25.20211',
-            customer: { username: 'karel69', firstName: 'Rostislav', lastName: 'Rosak', email: 'akadgsgs@shdsgh.com', phone: '1234567989' },
-            address: { postalCode: '78397', city: 'Olomouc', street: 'Nova 654544' }
-        };
+        return axios.get(BASE_URL + 'order/' + id, {
+            headers: {
+                Authorization: parseJwt()
+            }
+        })
+    }
+
+    createOrder(data) {
+        return axios.post(BASE_URL + 'order/create', data)
     }
 
 }

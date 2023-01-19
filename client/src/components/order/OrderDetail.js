@@ -14,14 +14,13 @@ function OrderDetail() {
     const { id } = useParams()
 
     useEffect(() => {
-        /*OrderService.readOrder(id)
+        OrderService.readOrder(id)
             .then((result) => {
                 setOrder(result.data)
             }).catch((err) => {
                 console.log(err)
-            });*/
-        setOrder(OrderService.readOrder(id))
-    }, [])
+            });
+    }, [id])
 
     return (
         <Layout>
@@ -35,15 +34,16 @@ function OrderDetail() {
                                 sx={{ display: 'flex', alignItems: 'center', color: 'darkBlue.main' }}
                             >
                                 <ShoppingBasketIcon fontSize="large" />
-                                <Typography variant="h6" ml={2}>
+                                <Typography variant="h5" ml={2}>
                                     Order {id}
                                 </Typography>
+
                             </Box>
-                            <Typography>
+                            <Typography sx={{ pl: 1 }}>
                                 Details
                             </Typography>
-                            <UserDataBox user={order.customer} />
-                            <Typography>
+                            <UserDataBox customer={order.customer} />
+                            <Typography sx={{ pl: 1 }}>
                                 Delivery address
                             </Typography>
                             <AddressCard {...order.address} />

@@ -1,10 +1,11 @@
 package com.pizza.pizza_reservation.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity
-public class Customer {
+public class Customer implements Serializable {
 
   @Id
   @GeneratedValue(generator = "customerSeq")

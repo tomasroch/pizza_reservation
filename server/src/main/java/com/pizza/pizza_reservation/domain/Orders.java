@@ -3,6 +3,7 @@ package com.pizza.pizza_reservation.domain;
 import com.pizza.pizza_reservation.enums.ORDER_STATUS;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -23,7 +24,7 @@ public class Orders {
   private Integer customerId;
   private Date estimatedDelivery;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name="address_id", nullable=false)
   private Address address;
 

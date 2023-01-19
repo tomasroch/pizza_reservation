@@ -35,9 +35,11 @@ public class OrderService {
         if (Objects.isNull(newOrder.getCity()) ||
         Objects.isNull(newOrder.getStreet()) ||
         Objects.isNull(newOrder.getPostalCode()) ||
-        Objects.isNull(newOrder.getPhone()) ||
+        (Objects.isNull(newOrder.getCustomerId()) &&
+        (Objects.isNull(newOrder.getPhone()) ||
         Objects.isNull(newOrder.getLastName()) ||
         Objects.isNull(newOrder.getFirstName()) ||
+        Objects.isNull(newOrder.getEmail()))) ||
         newOrder.getPizzaAmount().isEmpty()
         ){
             throw new IllegalArgumentException("Any of mandatory objects are null");

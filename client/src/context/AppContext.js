@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import AlertSnackbar from "../components/common/AlertSnackbar";
-import { getCartCookie, setCartCookie, clearCartCookie, getCartCookieItemsCount, setUserCookie, clearUserCookie, getUserCookie } from "./SessionCookies";
+import { getCartCookie, setCartCookie, clearCartCookie, getCartCookieItemsCount, setUserCookie, clearUserCookie, getUserCookie, setJwtCookie } from "./SessionCookies";
 
 const AppContext = React.createContext({
     cartItems: [],
@@ -37,8 +37,6 @@ function AppContextProvider(props) {
         cart = cart.filter(function (item) {
             return item.id !== id
         })
-
-        console.log(cart)
 
         saveCart(cart)
     }
@@ -96,19 +94,23 @@ function AppContextProvider(props) {
     const logoutUser = () => {
         setCurrentUser(null)
         clearUserCookie()
+        clearCart()
     }
 
     const getUserRole = () => {
         return currentUser.role
     }
 
-    const value = { cartItems, addItemToCart, removeItem, cartItemsCount, clearCart, showSnackbar, changeItemAmount, currentUser, loginUser, logoutUser, getUserRole }
+    const setJwtToken = (jwt) => {
+        setJwtCookie(jwt)
+    }
+
+    const value = { cartItems, addItemToCart, removeItem, cartItemsCount, clearCart, showSnackbar, changeItemAmount, currentUser, loginUser, logoutUser, getUserRole, setJwtToken }
 
     return (
         <AppContext.Provider value={value}>
             <AlertSnackbar
                 severity={snackbarSeverity}
-                autoHideDuration={10000}
                 message={snackbarMessage}
                 openSnackbar={snackbarOpen}
                 handleClose={closeSnackbar}

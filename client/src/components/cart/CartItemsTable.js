@@ -3,8 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 import BorderBox from "../common/BorderBox";
 import DeleteIcon from '@mui/icons-material/Delete';
-import RemoveIcon from '@mui/icons-material/Remove';
-import AddIcon from '@mui/icons-material/Add';
+import { validNumberField } from "../../services/CommonUtils";
 
 function CartItemsTable() {
     const [totalPrice, setTotalPrice] = useState(0);
@@ -103,7 +102,7 @@ function CartItemsTable() {
                                             <TableCell align="right">
                                                 <TextField
                                                     value={row.amount}
-                                                    onChange={(e) => changeItemAmount(row.id, e.target.value)}
+                                                    onChange={(e) => changeItemAmount(row.id, Number(e.target.value))}
                                                     type="number"
                                                     size="small"
                                                     InputLabelProps={{ shrink: true }}

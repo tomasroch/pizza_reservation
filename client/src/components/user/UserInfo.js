@@ -1,28 +1,29 @@
-import { Avatar, Box, CircularProgress, Divider, Grid, Paper, Tab, Tabs, Typography, useMediaQuery } from "@mui/material";
+import { Avatar, Box, CircularProgress, Divider, Grid, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
-import UserService from "../../services/UserService";
+import UserDataService from "../../services/UserService";
 import { red } from "@mui/material/colors";
 import AddressCard from "../address/AddressCard";
 import { AppContext } from "../../context/AppContext";
 import BorderBox from "../common/BorderBox";
 import UserDataBox from "./UserDataBox";
 
-function UserInfo(props) {
+function UserInfo() {
     const { currentUser } = useContext(AppContext)
+    const { customer } = currentUser
     const [addresses, setAddresses] = useState([])
     const [loading, setLoading] = useState(true)
 
     const loadUserAddresses = () => {
-        // TODO
-        /*UserService.readAllAddresses()
-            .then((result) => {
-                setAddresses(result.data)
-            }).catch((e) => {
+        UserDataService.readAllCustomerAddresses(currentUser.customer.id)
+            .then((response) => {
+                setAddresses(response.data)
+            })
+            .catch((e) => {
                 console.log(e)
-            })*/
-        setAddresses(UserService.readAllAddresses())
+            });
+
         setLoading(false)
     }
 
@@ -46,8 +47,8 @@ function UserInfo(props) {
                         <Stack alignItems='center' mb={3}>
                             <Avatar sx={{ bgcolor: 'darkBlue.main', width: 70, height: 70 }} />
                             <Typography variant="h6" mt={2}>{currentUser.username}</Typography>
-                            <Typography variant="subtitle2" display='block' color="primary" sx={{ mb: 2 }}>{currentUser.firstName + ' ' + currentUser.lastName}</Typography>
-                            <UserDataBox user={currentUser} />
+                            <Typography variant="subtitle2" display='block' color="primary" sx={{ mb: 2 }}>{customer.firstName + ' ' + customer.lastName}</Typography>
+                            <UserDataBox customer={currentUser.customer} />
                         </Stack>
                     </BorderBox>
                 </Grid>

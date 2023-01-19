@@ -3,10 +3,11 @@ import * as Cookies from "js-cookie";
 // source: https://www.jmfurlott.com/handling-user-session-react-context/
 const CART_COOKIE = 'cartItems'
 const USER_COOKIE = 'user'
+const JWT_COOKIE = 'jwt'
 
 export const setCartCookie = (cartItems) => {
     Cookies.remove(CART_COOKIE)
-    Cookies.set(CART_COOKIE, cartItems, { expires: 14 })
+    Cookies.set(CART_COOKIE, cartItems)
 }
 
 export const addItemToCookie = (cartItem) => {
@@ -14,17 +15,12 @@ export const addItemToCookie = (cartItem) => {
     let cartItems = getCartCookie()
     cartItems.push(cartItem)
 
-    Cookies.set(CART_COOKIE, cartItems, { expires: 14 })
+    Cookies.set(CART_COOKIE, cartItems)
 }
 
 export const getCartCookie = () => {
-    const cartItems = Cookies.get(CART_COOKIE)
-
-    if (cartItems === undefined) {
-        return []
-    } else {
-        return JSON.parse(cartItems)
-    }
+    const cartItems = getCookieByName(CART_COOKIE)
+    return cartItems ? JSON.parse(cartItems) : []
 }
 
 export const getCartCookieItemsCount = () => {
@@ -44,22 +40,38 @@ export const clearCartCookie = () => {
 // User
 
 export const getUserCookie = () => {
-    const user = Cookies.get(USER_COOKIE)
-
-    return { username: 'karel69', firstName: 'Rostislav', lastName: 'Rosak', email: 'akadgsgs@shdsgh.com', phone: '1234567989' }
-
-    if (user === undefined) {
-        return undefined
-    } else {
-        return JSON.parse(user)
-    }
+    const user = getCookieByName(USER_COOKIE)
+    return user ? JSON.parse(user) : undefined
 }
 
 export const setUserCookie = (user) => {
-    Cookies.remove(USER_COOKIE)
-    Cookies.set(USER_COOKIE, user, { expires: 15 })
+    setCookieByName(USER_COOKIE, user)
 }
 
 export const clearUserCookie = () => {
     Cookies.remove(USER_COOKIE)
+    clearJwtCookie()
+}
+
+// jwt
+
+export const getJwtCookie = () => {
+    return getCookieByName(JWT_COOKIE)
+}
+
+export const setJwtCookie = (jwt) => {
+    setCookieByName(JWT_COOKIE, jwt)
+}
+
+export const clearJwtCookie = () => {
+    Cookies.remove(JWT_COOKIE)
+}
+
+const getCookieByName = (name) => {
+    return Cookies.get(name)
+}
+
+const setCookieByName = (name, data) => {
+    Cookies.remove(name)
+    Cookies.set(name, data)
 }

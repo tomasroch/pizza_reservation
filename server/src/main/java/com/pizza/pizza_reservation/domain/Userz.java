@@ -21,7 +21,7 @@ public class Userz implements UserDetails {
   @Enumerated(EnumType.STRING)
   private USER_ROLE role;
 
-  @OneToOne(fetch = FetchType.LAZY)
+  @OneToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "customer_user_fk"))
   private Customer customer;
 
