@@ -6,7 +6,15 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 function AddressCard(props) {
 
     return (
-        <Card sx={{ display: 'flex' }} variant="outlined" >
+        <Card
+            sx={{
+                display: 'flex',
+                border: 1,
+                borderColor: 'gray.main',
+                borderRadius: 2,
+            }}
+            variant="outlined"
+        >
             <CardMedia
                 sx={{
                     display: 'flex',

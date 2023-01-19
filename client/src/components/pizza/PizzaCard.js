@@ -8,6 +8,7 @@ function PizzaCard(props) {
     const [buttonIcon, setButtonIcon] = useState()
 
     const handleAddItem = (e) => {
+        e.preventDefault()
         const pizza = {
             id: props.id,
             name: props.name,

@@ -10,7 +10,7 @@ function Layout(props) {
             sx={{
                 pt: props.title ? 10 : 15,
                 pb: 20,
-                minHeight: 900,
+                minHeight: 1000,
             }}
         >
             {props.title && <Divider sx={{ mt: 3, mb: 2 }} >

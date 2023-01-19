@@ -1,13 +1,22 @@
 import { Stack } from "@mui/system";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import OrdersTable from "../order/OrdersTable";
 import OrderService from "../../services/OrderService";
+import { Alert } from "@mui/material";
+import { AppContext } from "../../context/AppContext";
 
 function UserOrders() {
+    const { currentUser } = useContext(AppContext)
     const [orders, setOrders] = useState([])
 
     useEffect(() => {
-        setOrders(OrderService.readAllUserOrders())
+        OrderService.readAllUserOrders(currentUser.customer.id)
+            .then((response) => {
+                setOrders(response.data)
+            })
+            .catch((e) => {
+                console.log(e)
+            })
     }, [])
 
     const filterOrders = (statuses) => {
@@ -26,8 +35,13 @@ function UserOrders() {
         <Stack
             spacing={2}
         >
-            {/*inProgressOrders.length > 0 && <OrdersTable title="In progress orders" orders={inProgressOrders()} />*/}
-            <OrdersTable title="Already processed orders" orders={processedOrders()} />
+            {processedOrders().length > 0 ?
+                <div>
+                    {inProgressOrders().length > 0 && <OrdersTable title="In progress orders" orders={inProgressOrders()} />}
+                    <OrdersTable title="Already processed orders" orders={processedOrders()} />
+                </div>
+                : <Alert severity="info">No any orders found</Alert>
+            }
         </Stack>
     )
 }

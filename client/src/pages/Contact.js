@@ -4,8 +4,8 @@ import Layout from "../components/layout/Layout";
 
 function Contact() {
     return (
-        <Layout>
-            <div>sgsdg</div>
+        <Layout title="Contact">
+
         </Layout>
     )
 }

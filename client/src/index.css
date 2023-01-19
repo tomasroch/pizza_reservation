@@ -5,4 +5,9 @@ body {
 
 a {
   text-decoration: none;
+  color: darkred;
+}
+
+fieldset {
+  border: 0;
 }

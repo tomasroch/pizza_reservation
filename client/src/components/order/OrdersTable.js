@@ -7,7 +7,6 @@ import { Link as MuiLink } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { grey } from "@mui/material/colors";
 
-
 function OrdersTable(props) {
 
     const toLowerCase = (text) => {
@@ -33,57 +32,54 @@ function OrdersTable(props) {
                                 tableLayout: "fixed"
                             }}
                         >
-                            {props.orders.length > 0 ?
-                                <Table>
-                                    <TableBody>
-                                        {props.orders.map((row) => (
-                                            <TableRow
-                                                sx={{
-                                                    ':hover': {
-                                                        bgcolor: grey[200]
-                                                    }
-                                                }}
-                                                key={row.id}
-                                            >
-                                                <TableCell>
-                                                    <MuiLink
-                                                        component={Link}
-                                                        to={'/order/' + row.id}
-                                                        color="inherit"
-                                                    >
-                                                        {row.id}
-                                                    </MuiLink>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Typography variant="subtitle2" color="text.secondary">
-                                                        {row.created}
-                                                    </Typography>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Typography variant="subtitle2">
-                                                        {row.price + ',-'}
-                                                    </Typography>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Typography variant="subtitle2">
-                                                        {toLowerCase(row.status)}
-                                                    </Typography>
-                                                </TableCell>
-                                                <TableCell>
-                                                    <IconButton
-                                                        component={Link}
-                                                        to={'/order/' + row.id}
-                                                        sx={{ color: 'primary.main' }}
-                                                    >
-                                                        <InfoIcon />
-                                                    </IconButton>
-                                                </TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                                :
-                                <Typography>No any orders</Typography>}
+                            <Table>
+                                <TableBody>
+                                    {props.orders.map((row) => (
+                                        <TableRow
+                                            sx={{
+                                                ':hover': {
+                                                    bgcolor: grey[200]
+                                                }
+                                            }}
+                                            key={row.id}
+                                        >
+                                            <TableCell>
+                                                <MuiLink
+                                                    component={Link}
+                                                    to={'/order/' + row.id}
+                                                    color="inherit"
+                                                >
+                                                    {row.id}
+                                                </MuiLink>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography variant="subtitle2" color="text.secondary">
+                                                    {row.created}
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography variant="subtitle2">
+                                                    {row.price + ',-'}
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography variant="subtitle2">
+                                                    {toLowerCase(row.status)}
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <IconButton
+                                                    component={Link}
+                                                    to={'/order/' + row.id}
+                                                    sx={{ color: 'primary.main' }}
+                                                >
+                                                    <InfoIcon />
+                                                </IconButton>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
                         </Box>
                     </Box>
                 </Card>
