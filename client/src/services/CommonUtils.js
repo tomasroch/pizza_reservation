@@ -6,3 +6,7 @@ export function validNumberField(e, set) {
         set('')
     }
 }
+
+export const CUSTOMER_ROLE = ['REGISTERED_CUSTOMER']
+export const EMPLOYEE_ROLE = ['EMPLOYEE']
+export const ADMIN_ROLE = ['ADMIN', 'EMPLOYEE']

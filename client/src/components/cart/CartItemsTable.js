@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 import BorderBox from "../common/BorderBox";
 import DeleteIcon from '@mui/icons-material/Delete';
-import { validNumberField } from "../../services/CommonUtils";
 
 function CartItemsTable() {
     const [totalPrice, setTotalPrice] = useState(0);

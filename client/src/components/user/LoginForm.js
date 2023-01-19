@@ -44,7 +44,7 @@ function LoginForm() {
         >
             <BorderBox
                 component="form"
-                width="sm"
+                maxWidth="sm"
             >
                 <Typography
                     variant="h4"

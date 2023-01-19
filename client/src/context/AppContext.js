@@ -98,7 +98,7 @@ function AppContextProvider(props) {
     }
 
     const getUserRole = () => {
-        return currentUser.role
+        return currentUser ? currentUser.role : null
     }
 
     const setJwtToken = (jwt) => {

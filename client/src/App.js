@@ -15,6 +15,12 @@ import Cart from './pages/Cart';
 import MyAccount from './pages/MyAccount';
 import { AppContextProvider } from './context/AppContext';
 import OrderDetail from './components/order/OrderDetail';
+import RoleRoute from './components/common/RoleRoute';
+import Unauthorized from './pages/Unauthorized';
+import Orders from './pages/Orders';
+import { CUSTOMER_ROLE, EMPLOYEE_ROLE, ADMIN_ROLE } from './services/CommonUtils';
+import Pizzas from './pages/Pizzas';
+import Ingredients from './pages/Ingredients';
 
 
 const appTheme = createTheme({
@@ -47,12 +53,29 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
+          <Route path="unauthorized" element={<Unauthorized />} />
           <Route path="menu" element={<Menu />} />
           <Route path="about-us" element={<AboutUs />} />
           <Route path="contact" element={<Contact />} />
           <Route path="cart" element={<Cart />} />
-          <Route path="my-account" element={<MyAccount />} />
-          <Route path="order/:id" element={<OrderDetail />} />
+          <Route element={<RoleRoute roles={CUSTOMER_ROLE} />}>
+            <Route path="my-account" element={<MyAccount />} />
+          </Route>
+          <Route element={<RoleRoute roles={CUSTOMER_ROLE} />}>
+            <Route path="order/:id" element={<OrderDetail />} />
+          </Route>
+
+          <Route element={<RoleRoute roles={EMPLOYEE_ROLE} />}>
+            <Route path="orders" element={<Orders />} />
+          </Route>
+
+          <Route element={<RoleRoute roles={ADMIN_ROLE} />}>
+            <Route path="pizzas" element={<Pizzas />} />
+          </Route>
+          <Route element={<RoleRoute roles={ADMIN_ROLE} />}>
+            <Route path="ingredients" element={<Ingredients />} />
+          </Route>
+
         </Routes>
         <Footer />
       </AppContextProvider>

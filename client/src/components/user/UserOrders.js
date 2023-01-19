@@ -17,7 +17,7 @@ function UserOrders() {
             .catch((e) => {
                 console.log(e)
             })
-    }, [])
+    }, [currentUser.customer.id])
 
     const filterOrders = (statuses) => {
         return orders.filter(o => statuses.includes(o.status))

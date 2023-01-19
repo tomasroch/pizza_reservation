@@ -16,7 +16,7 @@ function UserInfo() {
     const [loading, setLoading] = useState(true)
 
     const loadUserAddresses = () => {
-        UserDataService.readAllCustomerAddresses(currentUser.customer.id)
+        UserDataService.readAllCustomerAddresses(customer?.id)
             .then((response) => {
                 setAddresses(response.data)
             })
@@ -29,7 +29,7 @@ function UserInfo() {
 
     useEffect(() => {
         loadUserAddresses()
-    }, [])
+    }, [customer?.id])
 
     return (
         loading ?

@@ -38,7 +38,7 @@ function CustomerForm() {
         setLoading(true)
 
         const orderItems = new Map();
-        cartItems.map(pizza => {
+        cartItems.forEach(pizza => {
             orderItems[pizza.id.toString()] = pizza.amount.toString()
         })
 
