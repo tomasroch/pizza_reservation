@@ -19,7 +19,13 @@ public class IngredientController {
     private IngredientService ingredientService;
 
     @PostMapping(value = "/create")
-    public @ResponseBody Ingredient createIngredient(@RequestBody Ingredient newIngredient) {        return ingredientService.createNewIngredient(newIngredient);    }
+    public ResponseEntity<Ingredient> createIngredient(@RequestBody Ingredient newIngredient) {
+        try {
+            return ResponseEntity.ok(ingredientService.createNewIngredient(newIngredient));
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
     @GetMapping(value = "/list")
     public ResponseEntity<List<Ingredient>> getAllIngredients() {       return  ResponseEntity.ok(ingredientService.getAllIngredients());    }
@@ -27,11 +33,20 @@ public class IngredientController {
     @GetMapping (value = "/list/active/{active}")
     public ResponseEntity<List<Ingredient>> getAllActiveIngredient(@PathVariable boolean active) {       return  ResponseEntity.ok(ingredientService.getAllActiveIngredients(active));    }
 
-    @PutMapping(value = "/{id}/active/{active}")
-    public ResponseEntity<String> updateIngredient(@PathVariable Integer idIngredient, @PathVariable boolean active){
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Ingredient> updateIngredient(@PathVariable Integer id, @RequestBody Ingredient newIngredient){
         try {
-            ingredientService.updateActiveStatus(idIngredient, active);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return ResponseEntity.ok(ingredientService.updateIngredient(id, newIngredient));
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<String> deleteIngredient(@PathVariable Integer id) {
+        try {
+            ingredientService.deleteIngredient(id);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

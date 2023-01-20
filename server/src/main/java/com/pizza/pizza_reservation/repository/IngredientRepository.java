@@ -11,11 +11,17 @@ import java.util.List;
 @Repository
 public interface IngredientRepository extends JpaRepository<Ingredient, Integer> {
 
+    @Query("SELECT i FROM Ingredient i order by i.name")
+    List<Ingredient> findAllSorted();
+
     @Query("SELECT i FROM Ingredient i WHERE i.active = ?1")
     public List<Ingredient> getAllActiveIngredients(boolean active);
 
     @Modifying
     @Query("UPDATE Ingredient i SET i.active = ?1 WHERE i.id = ?2")
     public void updateActiveStatus(boolean active, Integer id);
+
+    @Query("SELECT count (i) FROM Ingredient i where i.name = ?1")
+    Integer searchDuplicityName(String name);
 
 }

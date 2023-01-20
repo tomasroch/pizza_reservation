@@ -21,7 +21,7 @@ function PizzaCard(props) {
         setTimeout(() => {
             setButtonText(defaultBtnText)
             setButtonIcon()
-        }, 1500)
+        }, 2500)
     }
 
     return (

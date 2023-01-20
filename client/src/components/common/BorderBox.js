@@ -7,6 +7,7 @@ function BorderBox(props) {
             component={props.component}
             maxWidth={props.maxWidth ? props.maxWidth : 'md'}
             p={props.padding ? props.padding : 3}
+            m={props.m}
             sx={{
                 border: 1,
                 borderRadius: 2,

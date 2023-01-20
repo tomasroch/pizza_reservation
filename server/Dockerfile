@@ -1,4 +1,8 @@
-FROM openjdk:17
-EXPOSE 8080
-ADD target/pizza_reservation-1.0.jar pizza_reservation-1.0.jar
-ENTRYPOINT ["java", "-jar", "pizza_reservation-1.0.jar"]
+FROM maven:3.6.0-jdk-11-slim AS build
+COPY . /app/
+RUN mvn -f /app/pom.xml clean package -P production
+
+FROM openjdk:11
+COPY --from=build /app/target/*.jar /app/app.jar
+
+ENTRYPOINT ["java", "-jar","/app/app.jar"]
