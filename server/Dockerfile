@@ -1,8 +1,13 @@
-FROM maven:3.6.0-jdk-11-slim AS build
-COPY . /app/
-RUN mvn -f /app/pom.xml clean package -P production
+FROM maven:3.8.3-openjdk-17 AS build
+COPY . /server/
 
-FROM openjdk:11
-COPY --from=build /app/target/*.jar /app/app.jar
+RUN mvn -f /server/pom.xml clean package
 
-ENTRYPOINT ["java", "-jar","/app/app.jar"]
+# Run stage
+FROM openjdk:17
+COPY --from=build /server/target/*.jar /server/pizza_reservation-1.0.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar","/server/pizza_reservation-1.0.jar"]
+
