@@ -23,6 +23,22 @@ class OrderDataService {
         return axios.post(BASE_URL + 'order/create', data)
     }
 
+    readOrdersByStatus(status) {
+        return axios.get(BASE_URL + 'order/list/status/' + status, {
+            headers: {
+                Authorization: parseJwt()
+            }
+        })
+    }
+
+    changeOrderStatus(id, status) {
+        return axios.put(BASE_URL + 'order/' + id + '/status/' + status, {
+            headers: {
+                Authorization: parseJwt()
+            }
+        })
+    }
+
 }
 
 export default new OrderDataService()
