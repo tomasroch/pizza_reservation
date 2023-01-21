@@ -133,5 +133,6 @@ public class OrderService {
 
     public void updateOrder(Orders orders){ orderRepository.save(orders);}
 
+    @Transactional //ostatní metody z crud repozitory mají @transactional by default
     public void updateOrderStatus(Integer orderId, ORDER_STATUS status){ orderRepository.updateActiveStatus(status, orderId, new Date());}
 }

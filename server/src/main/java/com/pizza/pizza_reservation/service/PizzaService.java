@@ -8,8 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Date;
@@ -41,6 +41,7 @@ public class PizzaService {
 
     public void deletePizza(Integer id){  pizzaRepository.deleteById(id);}
 
+    @Transactional
     public void updatePizza(Pizza pizza) throws Exception {
         checkPizzaData(pizza, false);
 

@@ -5,6 +5,8 @@ import com.pizza.pizza_reservation.domain.Orders;
 import com.pizza.pizza_reservation.dto.OrderDto;
 import com.pizza.pizza_reservation.enums.ORDER_STATUS;
 import com.pizza.pizza_reservation.service.OrderService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,8 @@ import java.util.List;
 @RequestMapping("/api/order")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class OrderController {
+
+    private static Logger logger = LoggerFactory.getLogger(OrderController.class);
 
     @Autowired
     private OrderService orderService;
@@ -61,6 +65,7 @@ public class OrderController {
             orderService.updateOrderStatus(id, status);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
+            logger.warn(e.getMessage());
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
