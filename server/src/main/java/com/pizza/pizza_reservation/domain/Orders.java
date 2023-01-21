@@ -6,6 +6,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @Entity
 public class Orders {
@@ -21,12 +23,18 @@ public class Orders {
   @Column(updatable = false)
   private Date created;
   private Date updated;
-  private Integer customerId;
   private Date estimatedDelivery;
 
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name="address_id", nullable=false)
   private Address address;
+
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name="customer_id", nullable=false)
+  private Customer customer;
+
+  @Transient
+  private List<Pizza> orderItems;
 
 
   public Integer getId() {
@@ -73,16 +81,6 @@ public class Orders {
     this.updated = updated;
   }
 
-
-  public Integer getCustomerId() {
-    return customerId;
-  }
-
-  public void setCustomerId(Integer customerId) {
-    this.customerId = customerId;
-  }
-
-
   public Date getEstimatedDelivery() {
     return estimatedDelivery;
   }
@@ -97,5 +95,21 @@ public class Orders {
 
   public void setAddress(Address address) {
     this.address = address;
+  }
+
+  public Customer getCustomer() {
+    return customer;
+  }
+
+  public void setCustomer(Customer customer) {
+    this.customer = customer;
+  }
+
+  public List<Pizza>  getOrderItems() {
+    return orderItems;
+  }
+
+  public void setOrderItems(List<Pizza>  orderItems) {
+    this.orderItems = orderItems;
   }
 }

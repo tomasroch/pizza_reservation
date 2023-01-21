@@ -61,7 +61,7 @@ function App() {
           <Route element={<RoleRoute roles={CUSTOMER_ROLE} />}>
             <Route path="my-account" element={<MyAccount />} />
           </Route>
-          <Route element={<RoleRoute roles={CUSTOMER_ROLE} />}>
+          <Route element={<RoleRoute roles={EMPLOYEE_ROLE} />}>
             <Route path="order/:id" element={<OrderDetail />} />
           </Route>
 
@@ -69,17 +69,14 @@ function App() {
             <Route path="orders" element={<Orders />} />
           </Route>
 
-          {/*<Route element={<RoleRoute roles={ADMIN_ROLE} />}>
+          <Route element={<RoleRoute roles={ADMIN_ROLE} />}>
             <Route path="pizzas" element={<Pizzas />} />
-  </Route>*/}
+          </Route>
 
-          <Route path="pizzas" element={<Pizzas />} />
-          {/*
           <Route element={<RoleRoute roles={ADMIN_ROLE} />}>
             <Route path="ingredients" element={<Ingredients />} />
-  </Route> */}
+          </Route>
 
-          <Route path="ingredients" element={<Ingredients />} />
 
         </Routes>
         <Footer />

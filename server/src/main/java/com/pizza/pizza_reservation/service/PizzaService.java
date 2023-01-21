@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +26,11 @@ public class PizzaService {
     @Autowired
     private PizzaIngredientRepository pizzaIngredientRepository;
 
-    public Pizza createNewPizza(Pizza newPizza) {        return pizzaRepository.save(newPizza);    }
+    public Pizza createNewPizza(Pizza newPizza) throws Exception {
+        checkPizzaData(newPizza, true);
+        newPizza.setCreated(Date.from(Instant.now()));
+        return pizzaRepository.save(newPizza);
+    }
 
     public List<Pizza> getAllPizzas(){ return pizzaRepository.findAll();}
     public List<Pizza> getAllActivePizzas(boolean active){ return pizzaRepository.getAllActivePizzas(active);}
@@ -36,9 +41,18 @@ public class PizzaService {
 
     public void deletePizza(Integer id){  pizzaRepository.deleteById(id);}
 
-    public void updatePizza(Pizza pizza){
-        pizza.setUpdated(Date.from(Instant.now()));
-        pizzaRepository.save(pizza);
+    public void updatePizza(Pizza pizza) throws Exception {
+        checkPizzaData(pizza, false);
+
+        Pizza oldPizza = pizzaRepository.getById(pizza.getId());
+
+        oldPizza.setName(pizza.getName());
+        oldPizza.setPrice(pizza.getPrice());
+        oldPizza.setActive(pizza.getActive());
+        oldPizza.setIngredients(pizza.getIngredients());
+
+        oldPizza.setUpdated(Date.from(Instant.now()));
+        pizzaRepository.save(oldPizza);
     }
 
     public void updateActiveStatus(Integer idPizza, boolean active){        pizzaRepository.updateActiveStatus(active, idPizza);    }
@@ -46,4 +60,15 @@ public class PizzaService {
     public PizzaIngredient addPizzaIngredient(PizzaIngredient pizzaIngredient){ return pizzaIngredientRepository.save(pizzaIngredient);}
 
     public void deletePizzaIngredient(PizzaIngredient pizzaIngredient){     pizzaIngredientRepository.delete(pizzaIngredient);}
+
+    private void checkPizzaData(Pizza pizza, boolean isNew) throws Exception {
+        if (!isNew && pizza.getId() == null)
+            throw new Exception("Missing pizza id");
+
+        if (pizza.getPrice() == null || pizza.getPrice().compareTo(BigDecimal.ONE) < 0 )
+            throw new Exception("New pizza price is invalid");
+
+        if (pizza.getName() == null || pizza.getName().isBlank())
+            throw new Exception("New name can not be empty");
+    }
 }

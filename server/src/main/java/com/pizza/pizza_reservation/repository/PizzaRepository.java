@@ -1,5 +1,6 @@
 package com.pizza.pizza_reservation.repository;
 
+import com.pizza.pizza_reservation.domain.Ingredient;
 import com.pizza.pizza_reservation.domain.Pizza;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -20,5 +21,8 @@ public interface PizzaRepository extends JpaRepository<Pizza, Integer> {
     @Modifying
     @Query("UPDATE Pizza p SET p.active = ?1 WHERE p.id = ?2")
     public void updateActiveStatus(boolean active, Integer id);
+
+    @Query("SELECT p FROM Pizza p WHERE p.id = ?1")
+    Pizza findPizzaById(Integer id);
 
 }

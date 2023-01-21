@@ -1,9 +1,12 @@
 package com.pizza.pizza_reservation.service;
 
 import com.pizza.pizza_reservation.domain.*;
+import com.pizza.pizza_reservation.domain.idclass.PizzaOrderId;
 import com.pizza.pizza_reservation.dto.OrderDto;
 import com.pizza.pizza_reservation.enums.ORDER_STATUS;
 import com.pizza.pizza_reservation.repository.*;
+
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,7 +53,7 @@ public class OrderService {
         orders.setEstimatedDelivery(Date.from(Instant.now().plusSeconds(3600)));
 
         if (newOrder.getCustomerId() != null){
-            orders.setCustomerId(newOrder.getCustomerId());
+            orders.setCustomer(customerRepository.getById(newOrder.getCustomerId()));
         } else {
             Customer customer = new Customer();
             customer.setFirstName(newOrder.getFirstName());
@@ -59,7 +62,7 @@ public class OrderService {
             customer.setPhone(newOrder.getPhone());
             customer = customerRepository.save(customer);
 
-            orders.setCustomerId(customer.getId());
+            orders.setCustomer(customer);
         }
         if (newOrder.getIdAddress() != null){
             Address address = addressRepository.getById(newOrder.getIdAddress());
@@ -90,7 +93,7 @@ public class OrderService {
     }
 
     public List<Address> getAllAddressesByCustomerId(Integer customerId){
-        List<Orders> orders = orderRepository.getAllOrdersByCustomerId(customerId);
+        List<Orders> orders = orderRepository.getAllOrdersByCustomerId(customerRepository.getById(customerId));
         List<Address> customerAddresses = new ArrayList<>();
         if (orders == null || orders.isEmpty())
             return customerAddresses;
@@ -107,11 +110,26 @@ public class OrderService {
 
     public List<Orders> getAllOrders(){ return orderRepository.findAll();}
 
-    public Orders getOrderById(Integer id){ return orderRepository.getById(id);}
+    public Orders getOrderById(Integer id) {
+        Orders o = orderRepository.readOrderById(id);
+        List<PizzaOrder> pizzaOrderIds =  pizzaOrderRepository.readOrderItems(id);
+
+        List<Pizza>  orderItems = new ArrayList<>();
+
+        for (PizzaOrder pizzaOrder : pizzaOrderIds) {
+            Pizza p = pizzaRepository.findPizzaById(pizzaOrder.getPizzaId());
+            p.setIngredients(null);
+            p.setAmount(pizzaOrder.getAmount());
+            orderItems.add(p);
+        }
+
+        o.setOrderItems(orderItems);
+        return o;
+    }
 
     public List<Orders> getAllOrdersByStatus(ORDER_STATUS status){ return orderRepository.getAllOrdersByStatus(status);}
 
-    public List<Orders> getAllOrdersByCustomerId(Integer customerId){ return orderRepository.getAllOrdersByCustomerId(customerId);}
+    public List<Orders> getAllOrdersByCustomerId(Integer customerId){ return orderRepository.getAllOrdersByCustomerId(customerRepository.getById(customerId));}
 
     public void updateOrder(Orders orders){ orderRepository.save(orders);}
 

@@ -2,12 +2,14 @@ package com.pizza.pizza_reservation.domain;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Pizza {
+public class Pizza implements Serializable {
 
   @Id
   @GeneratedValue(generator = "pizzaSeq")
@@ -26,7 +28,10 @@ public class Pizza {
           joinColumns = {@JoinColumn(name = "pizzaId")},
           inverseJoinColumns = {@JoinColumn(name = "ingredientId")}
   )
-  private List<Ingredient> ingredients;
+  private List<Ingredient> ingredients = new ArrayList<>();
+
+  @Transient
+  private Integer amount;
 
   @Column(nullable = false)
   private boolean active;
@@ -86,4 +91,12 @@ public class Pizza {
   public List<Ingredient> getIngredients() {    return ingredients;  }
 
   public void setIngredients(List<Ingredient> ingredients) {    this.ingredients = ingredients;  }
+
+  public Integer getAmount() {
+    return amount;
+  }
+
+  public void setAmount(Integer amount) {
+    this.amount = amount;
+  }
 }

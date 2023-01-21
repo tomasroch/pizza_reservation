@@ -20,7 +20,13 @@ public class PizzaController {
     private PizzaService pizzaService;
 
     @PostMapping(value = "/create")
-    public @ResponseBody Pizza createPizza(@RequestBody Pizza newPizza) {        return pizzaService.createNewPizza(newPizza);    }
+    public ResponseEntity<Pizza> createPizza(@RequestBody Pizza newPizza) {
+        try {
+            return ResponseEntity.ok(pizzaService.createNewPizza(newPizza));
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
     @GetMapping (value = "/list")
     public ResponseEntity<List<Pizza>> getAllPizzas() {       return  ResponseEntity.ok(pizzaService.getAllPizzas());    }

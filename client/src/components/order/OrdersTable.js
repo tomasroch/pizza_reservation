@@ -6,13 +6,13 @@ import InfoIcon from '@mui/icons-material/Info';
 import { Link as MuiLink } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { grey } from "@mui/material/colors";
+import { formatDate } from "../../services/CommonUtils";
 
 function OrdersTable(props) {
 
     const toLowerCase = (text) => {
         return text.charAt(0) + text.substring(1).toLowerCase()
     }
-
     return (
         <BorderBox>
             <Stack spacing={2}>
@@ -54,7 +54,7 @@ function OrdersTable(props) {
                                             </TableCell>
                                             <TableCell>
                                                 <Typography variant="subtitle2" color="text.secondary">
-                                                    {row.created}
+                                                    {formatDate(row.created)}
                                                 </Typography>
                                             </TableCell>
                                             <TableCell>

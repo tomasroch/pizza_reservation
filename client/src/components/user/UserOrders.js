@@ -35,10 +35,10 @@ function UserOrders() {
         <Stack
             spacing={2}
         >
-            {processedOrders().length > 0 ?
+            {orders.length > 0 ?
                 <div>
                     {inProgressOrders().length > 0 && <OrdersTable title="In progress orders" orders={inProgressOrders()} />}
-                    <OrdersTable title="Already processed orders" orders={processedOrders()} />
+                    {processedOrders().length > 0 && <OrdersTable title="Already processed orders" orders={processedOrders()} />}
                 </div>
                 : <Alert severity="info">No any orders found</Alert>
             }

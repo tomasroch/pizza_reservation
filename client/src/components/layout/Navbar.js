@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,6 +13,7 @@ import NavButton from '../common/NavButton';
 import { AppContext } from '../../context/AppContext';
 import { Avatar, IconButton } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
+import { ADMIN_ROLE, CUSTOMER_ROLE, EMPLOYEE_ROLE } from '../../services/CommonUtils';
 
 const menuItems = [
     {
@@ -53,6 +54,7 @@ function Navbar() {
                         sx={{
                             color: 'inherit',
                             textDecoration: 'none',
+                            display: { sm: 'none', xl: 'block' }
                         }}
                     >
                         Pizza.cz
@@ -67,6 +69,15 @@ function Navbar() {
                         {menuItems.map((menuItem) => (
                             <NavButton key={menuItem.title} text={menuItem.title} linkTo={menuItem.route} />
                         ))}
+
+                        {(currentUser && EMPLOYEE_ROLE.includes(currentUser.role)) &&
+                            <NavButton text='Orders' linkTo='/orders' />}
+
+                        {(currentUser && ADMIN_ROLE.includes(currentUser.role)) &&
+                            <NavButton text='Pizzas' linkTo='/pizzas' />}
+                        {(currentUser && ADMIN_ROLE.includes(currentUser.role)) &&
+                            <NavButton text='Ingredients' linkTo='/ingredients' />}
+
                     </Box>
 
                     <Box sx={{ flexGrow: 0, display: 'flex' }}>
@@ -74,11 +85,13 @@ function Navbar() {
 
                         {currentUser ? (
                             <div>
-                                <Link to='my-account'>
-                                    <IconButton sx={{ mx: 1 }}>
-                                        <Avatar>{getUserAvatar()}</Avatar>
-                                    </IconButton>
-                                </Link>
+                                {CUSTOMER_ROLE.includes(currentUser.role) &&
+                                    <Link to='my-account'>
+                                        <IconButton sx={{ mx: 1 }}>
+                                            <Avatar>{getUserAvatar()}</Avatar>
+                                        </IconButton>
+                                    </Link>
+                                }
                                 <IconButton
                                     onClick={(e) => doLogoutUser(e)}
                                     sx={{

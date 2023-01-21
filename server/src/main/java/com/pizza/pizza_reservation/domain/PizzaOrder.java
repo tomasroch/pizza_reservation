@@ -10,6 +10,7 @@ public class PizzaOrder {
 
   @Id
   private Integer orderId;
+  @Id
   private Integer pizzaId;
   private Integer amount;
 

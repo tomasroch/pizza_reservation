@@ -1,5 +1,5 @@
 import axios from "axios"
-import { BASE_URL } from "./HttpCommon"
+import { BASE_URL, parseJwt } from "./HttpCommon"
 
 class IngredientDataService {
 
@@ -8,15 +8,27 @@ class IngredientDataService {
     }
 
     updateIngredient(id, data) {
-        return axios.put(BASE_URL + 'ingredient/' + id, data)
+        return axios.put(BASE_URL + 'ingredient/' + id, data, {
+            headers: {
+                Authorization: parseJwt()
+            }
+        })
     }
 
     deleteIngredient(id) {
-        return axios.delete(BASE_URL + 'ingredient/' + id)
+        return axios.delete(BASE_URL + 'ingredient/' + id, {
+            headers: {
+                Authorization: parseJwt()
+            }
+        })
     }
 
     createIngredient(data) {
-        return axios.post(BASE_URL + 'ingredient/create', data)
+        return axios.post(BASE_URL + 'ingredient/create', data, {
+            headers: {
+                Authorization: parseJwt()
+            }
+        })
     }
 
 }
