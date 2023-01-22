@@ -32,7 +32,7 @@ class OrderDataService {
     }
 
     changeOrderStatus(id, status) {
-        return axios.put(BASE_URL + 'order/' + id + '/status/' + status, {
+        return axios.put(BASE_URL + 'order/' + id + '/status/' + status, {}, {
             headers: {
                 Authorization: parseJwt()
             }
