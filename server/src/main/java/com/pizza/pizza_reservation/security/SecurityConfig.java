@@ -29,6 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtFilter jwtFilter;
 
+    private final String ADMIN_ROLE = "ROLE_ADMIN";
+
     @Override @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception{
         return super.authenticationManagerBean();
@@ -61,7 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/order/create").permitAll()
                 .antMatchers("/api/pizza/list/**").permitAll()
                 .antMatchers("/api/order/**").authenticated()
-                .antMatchers("/api/pizza/**").authenticated()
+                .antMatchers("/api/pizza/**").hasAuthority(ADMIN_ROLE)
                 .anyRequest().permitAll();
 
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
