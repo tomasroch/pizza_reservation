@@ -10,7 +10,6 @@ public enum USER_ROLE implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        // Prý tam musí být prefix kvůli springu, but not sure about this
-        return "ROLE_" + this.name();
+        return this.name();
     }
 }

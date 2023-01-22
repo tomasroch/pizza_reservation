@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtFilter jwtFilter;
 
-    private final String ADMIN_ROLE = "ROLE_ADMIN";
+    private final String ADMIN_ROLE = "ADMIN";
 
     @Override @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception{
