@@ -108,7 +108,7 @@ function Navbar() {
                         ) : (
                             <div>
                                 <NavButton text='Login' linkTo='/login' icon={<LoginIcon />} />
-                                <NavButton text='Sing Up' linkTo='/register' icon={<HowToRegIcon />} />
+                                <NavButton text='Sign Up' linkTo='/register' icon={<HowToRegIcon />} />
                             </div>
                         )}
 
