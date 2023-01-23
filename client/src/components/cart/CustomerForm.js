@@ -62,7 +62,7 @@ function CustomerForm() {
             .then((response) => {
                 showSnackbar('The order was successfully created', 'success')
                 clearCart()
-                navigate("/order/" + response.data.id)
+                navigate("/")
                 return
             }).catch((e) => {
                 setError('Failed to create order')

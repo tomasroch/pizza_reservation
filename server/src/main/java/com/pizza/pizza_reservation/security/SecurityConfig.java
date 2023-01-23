@@ -1,5 +1,6 @@
 package com.pizza.pizza_reservation.security;
 
+import com.pizza.pizza_reservation.enums.USER_ROLE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -28,8 +29,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private JwtFilter jwtFilter;
-
-    private final String ADMIN_ROLE = "ADMIN";
 
     @Override @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception{
@@ -63,7 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/order/create").permitAll()
                 .antMatchers("/api/pizza/list/**").permitAll()
                 .antMatchers("/api/order/**").authenticated()
-                .antMatchers("/api/pizza/**").hasAuthority(ADMIN_ROLE)
+                .antMatchers("/api/pizza/**").hasAuthority(USER_ROLE.ADMIN.name())
                 .anyRequest().permitAll();
 
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
